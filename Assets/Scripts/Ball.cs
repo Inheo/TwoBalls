@@ -10,6 +10,9 @@ public class Ball : MonoBehaviour
 
     private Finish _currentFinish;
 
+    public event System.Action OnFinished; 
+    public event System.Action OnFail; 
+
     public bool IsFinished { get; private set; }
 
     private void Start()
@@ -31,6 +34,7 @@ public class Ball : MonoBehaviour
                 _rigidbody.velocity = Vector3.zero;
                 _rigidbody.isKinematic = true;
                 _sphereCollider.isTrigger = true;
+                OnFinished?.Invoke();
             }
             else if (_currentFinish.IsBusy == true)
             {
@@ -42,6 +46,10 @@ public class Ball : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (_currentFinish == null && other.TryGetComponent(out _currentFinish)) ;
+        if(other.TryGetComponent(out FailPlatform fail))
+        {
+            OnFail?.Invoke();
+        }
     }
 
     private void OnTriggerExit(Collider other)
