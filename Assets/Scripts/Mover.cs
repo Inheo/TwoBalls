@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     private const string MOUSE_X_PARAMETER = "Mouse X";
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speed = 5;
 
     private Ball _ball;
     private Rigidbody _rigidbody;
