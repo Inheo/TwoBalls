@@ -19,7 +19,7 @@ public class Ball : MonoBehaviour
         _sphereCollider = GetComponent<SphereCollider>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_currentFinish != null)
         {
