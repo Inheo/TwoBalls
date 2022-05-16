@@ -21,7 +21,6 @@ public class SwipeInput : MonoBehaviour
             {
                 int directionX = distanceX < 0 ? -1 : 1;
                 OnSwipeHorizontal?.Invoke(directionX);
-                Debug.Log("swiped");
             }
         }
     }
