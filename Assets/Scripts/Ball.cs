@@ -10,8 +10,8 @@ public class Ball : MonoBehaviour
 
     private Finish _currentFinish;
 
-    public event System.Action OnFinished; 
-    public event System.Action OnFail; 
+    public event System.Action OnFinished;
+    public event System.Action OnFail;
 
     public bool IsFinished { get; private set; }
 
@@ -26,27 +26,22 @@ public class Ball : MonoBehaviour
     {
         if (_currentFinish != null)
         {
-            if (Vector3.Distance(transform.position, _currentFinish.transform.position) < _snapDistance && _currentFinish.IsBusy == false)
+            if (Vector3.Distance(transform.position, _currentFinish.transform.position) < _snapDistance)
             {
-                transform.position = _currentFinish.transform.position;
                 IsFinished = true;
-                _currentFinish.IsBusy = true;
-                _rigidbody.velocity = Vector3.zero;
-                _rigidbody.isKinematic = true;
-                _sphereCollider.isTrigger = true;
                 OnFinished?.Invoke();
-            }
-            else if (_currentFinish.IsBusy == true)
-            {
-                _currentFinish = null;
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_currentFinish == null && other.TryGetComponent(out _currentFinish)) ;
-        if(other.TryGetComponent(out FailPlatform fail))
+        if (other.TryGetComponent(out Finish finish))
+        {
+            _currentFinish = finish;
+        }
+
+        if (other.TryGetComponent(out FailPlatform fail))
         {
             OnFail?.Invoke();
         }
@@ -54,9 +49,10 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out _currentFinish))
+        if (other.TryGetComponent(out Finish finish) && _currentFinish == finish)
         {
             _currentFinish = null;
+            IsFinished = false;
         }
     }
 }

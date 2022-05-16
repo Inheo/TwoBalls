@@ -27,7 +27,7 @@ public class Mover : MonoBehaviour
 
     private void Move(int directionX)
     {
-        if (_coroutine == null && _ball.IsFinished == false)
+        if (_coroutine == null && Game.Instance.EndGame == false)
             _coroutine = StartCoroutine(MoveTo(Vector3.right * directionX));
     }
 
@@ -35,9 +35,9 @@ public class Mover : MonoBehaviour
     {
         float lostTime = 0;
         Vector3 startPosition = transform.position;
-        Vector3 endPosition = transform.position + direction * 2.4f;
+        Vector3 endPosition = transform.position + direction * 2;
 
-        while (lostTime < 1 && _ball.IsFinished == false)
+        while (lostTime < 1)
         {
             lostTime += Time.deltaTime / _durationMove;
             // _rigidbody.MovePosition(transform.position + direction * Time.deltaTime * 20);
