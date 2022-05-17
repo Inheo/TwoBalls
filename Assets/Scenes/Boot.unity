@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 426286219}
   - component: {fileID: 426286218}
   m_Layer: 5
-  m_Name: WInText
+  m_Name: FailText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,7 +860,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Next
 --- !u!222 &1676030725
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -940,7 +940,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next
+  m_Text: Restart
 --- !u!222 &1733609131
 CanvasRenderer:
   m_ObjectHideFlags: 0
