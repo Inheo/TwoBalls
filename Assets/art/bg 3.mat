@@ -128,12 +128,12 @@ Material:
     - _ZWrite: 1
     - __dummy__: 0
     m_Colors:
-    - _Color: {r: 0.062745094, g: 0.7952836, b: 1, a: 1}
+    - _Color: {r: 0.8207547, g: 0.66202384, b: 0.66202384, a: 1}
     - _ColorDim: {r: 0.91226417, g: 0.7028302, b: 1, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _ColorGradient: {r: 0, g: 0.1802516, b: 1, a: 1}
+    - _ColorGradient: {r: 0.6415094, g: 0.251157, b: 0.251157, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatRimColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
