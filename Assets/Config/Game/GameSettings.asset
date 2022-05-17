@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e9be02e8a174e53b0c6a48177124bb, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  _levels: []
+  _levels:
+  - {fileID: 11400000, guid: d7d828ec3a84d470c964e32607dc0cf9, type: 2}
+  - {fileID: 11400000, guid: 0a99b276acf6a464e8356c96ee723462, type: 2}
+  - {fileID: 11400000, guid: b387f93e02cb1408eb926cc4079a3469, type: 2}
+  - {fileID: 11400000, guid: 5211a0db9eafa437aa31434733495255, type: 2}
