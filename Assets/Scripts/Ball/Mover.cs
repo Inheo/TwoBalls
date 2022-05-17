@@ -42,9 +42,9 @@ public class Mover : MonoBehaviour
         if (Physics.Raycast(startPosition, direction, out RaycastHit hit, _moveStep, _paltformLayer))
         {
             Vector3 hitPoint = hit.point;
-            hitPoint.x = hitPoint.x + (1 * Mathf.Sign(-direction.x));
+            hitPoint.x = hitPoint.x + (_moveStep * 0.5f * Mathf.Sign(-direction.x));
             float distance = Vector3.Distance(startPosition, hitPoint);
-            
+
             if (distance < _moveStep)
             {
                 endPosition.x = hitPoint.x;
@@ -55,8 +55,14 @@ public class Mover : MonoBehaviour
         while (lostTime < 1)
         {
             lostTime += Time.deltaTime / _durationMove;
-            _rigidbody.MovePosition(Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z), new Vector3(endPosition.x, transform.position.y, transform.position.z), lostTime));
-            // transform.position = Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z), new Vector3(endPosition.x, transform.position.y, transform.position.z), lostTime);
+
+            // _rigidbody.MovePosition(Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z),
+            //                                      new Vector3(endPosition.x, transform.position.y, transform.position.z), 
+            //                                      lostTime));
+
+            transform.position = Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z),
+                                            new Vector3(endPosition.x, transform.position.y, transform.position.z),
+                                            lostTime);
             yield return null;
         }
 
