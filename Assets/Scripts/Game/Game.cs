@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour, IStartCoroutine
 {
@@ -16,9 +15,6 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void Start()
     {
-        _winPanel.SetActive(false);
-        _failPanel.SetActive(false);
-
         StartLevel();
     }
 
@@ -29,6 +25,9 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void StartLevel()
     {
+        _winPanel.SetActive(false);
+        _failPanel.SetActive(false);
+
         _sceneLoader.OnSceneLoaded += SceneLoaded;
 
         _sceneLoader.TryLoadLevel(GAME_PARAMETER);
@@ -64,6 +63,7 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     public void RestartGame()
     {
+        Unsubscribe();
         StartLevel();
     }
 }

@@ -48,6 +48,8 @@ public class Level : MonoBehaviour
 
     private void CheckWin()
     {
+        if(IsLevelEnd == true) return;
+
         bool isWin = _balls.Where(ball => ball.IsFinished == true).Count() == _balls.Length;
 
         if (isWin == true)
@@ -59,6 +61,8 @@ public class Level : MonoBehaviour
 
     private void Fail()
     {
+        if(IsLevelEnd == true) return;
+        
         IsLevelEnd = true;
         OnLevelFail?.Invoke();
     }
