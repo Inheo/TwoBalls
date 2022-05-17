@@ -142,4 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _durationMove: 0.5
+  _moveStep: 2
   _swipeInput: {fileID: 0}
+  _paltformLayer:
+    serializedVersion: 2
+    m_Bits: 64
