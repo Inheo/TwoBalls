@@ -355,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _winPanel: {fileID: 1250979640}
   _failPanel: {fileID: 583454836}
+  _gameSettings: {fileID: 11400000, guid: 6e0785f81c04c47f495b3c4277f4a809, type: 2}
 --- !u!4 &279708857
 Transform:
   m_ObjectHideFlags: 0
@@ -939,7 +940,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Next
 --- !u!222 &1733609131
 CanvasRenderer:
   m_ObjectHideFlags: 0
