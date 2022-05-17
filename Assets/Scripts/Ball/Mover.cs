@@ -10,6 +10,8 @@ public class Mover : MonoBehaviour
     private Rigidbody _rigidbody;
     private Coroutine _coroutine;
 
+    public event System.Action OnMoveStart;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -29,6 +31,7 @@ public class Mover : MonoBehaviour
 
     private IEnumerator MoveTo(Vector3 direction)
     {
+        OnMoveStart?.Invoke();
         float lostTime = 0;
         Vector3 startPosition = transform.position;
         Vector3 endPosition = transform.position + direction * 2;
