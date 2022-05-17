@@ -27,7 +27,7 @@ public class Mover : MonoBehaviour
 
     private void Move(int directionX)
     {
-        if (_coroutine == null && Game.Instance.EndGame == false)
+        if (_coroutine == null && Level.Instance.IsLevelEnd == false)
             _coroutine = StartCoroutine(MoveTo(Vector3.right * directionX));
     }
 
