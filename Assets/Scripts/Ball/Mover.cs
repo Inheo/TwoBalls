@@ -5,7 +5,9 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [SerializeField] private float _durationMove = 0.5f;
+    [SerializeField] private float _moveStep = 2;
     [SerializeField] private SwipeInput _swipeInput;
+    [SerializeField] private LayerMask _paltformLayer;
 
     private Rigidbody _rigidbody;
     private Coroutine _coroutine;
@@ -34,8 +36,21 @@ public class Mover : MonoBehaviour
         OnMoveStart?.Invoke();
         float lostTime = 0;
         Vector3 startPosition = transform.position;
-        Vector3 endPosition = transform.position + direction * 2;
+        Vector3 endPosition = transform.position + direction * _moveStep;
         _rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
+
+        if (Physics.Raycast(startPosition, direction, out RaycastHit hit, _moveStep, _paltformLayer))
+        {
+            Vector3 hitPoint = hit.point;
+            hitPoint.x = hitPoint.x + (1 * Mathf.Sign(-direction.x));
+            float distance = Vector3.Distance(startPosition, hitPoint);
+            
+            if (distance < _moveStep)
+            {
+                endPosition.x = hitPoint.x;
+                lostTime = 1 - distance / _moveStep;
+            }
+        }
 
         while (lostTime < 1)
         {
