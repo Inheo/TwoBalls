@@ -1,11 +1,12 @@
+using Scripts.Data;
 using UnityEngine;
 
 public class Game : MonoBehaviour, IStartCoroutine
 {
     [SerializeField] private GameObject _winPanel;
     [SerializeField] private GameObject _failPanel;
+    [SerializeField] private GameSettings _gameSettings;
 
-    private const string GAME_PARAMETER = "Game";
     private SceneLoader _sceneLoader;
 
     private void Awake()
@@ -30,7 +31,7 @@ public class Game : MonoBehaviour, IStartCoroutine
 
         _sceneLoader.OnSceneLoaded += SceneLoaded;
 
-        _sceneLoader.TryLoadLevel(GAME_PARAMETER);
+        _sceneLoader.TryLoadLevel(_gameSettings[PlayerProgress.GetData().Level].SceneName);
     }
 
     private void SceneLoaded()
