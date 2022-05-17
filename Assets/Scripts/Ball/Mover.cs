@@ -9,14 +9,12 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _durationMove = 0.5f;
     [SerializeField] private SwipeInput _swipeInput;
 
-    private Ball _ball;
     private Rigidbody _rigidbody;
     private Coroutine _coroutine;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _ball = GetComponent<Ball>();
         _swipeInput.OnSwipeHorizontal += Move;
     }
 
