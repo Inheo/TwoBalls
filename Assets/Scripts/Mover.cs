@@ -36,15 +36,17 @@ public class Mover : MonoBehaviour
         float lostTime = 0;
         Vector3 startPosition = transform.position;
         Vector3 endPosition = transform.position + direction * 2;
+        _rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
 
         while (lostTime < 1)
         {
             lostTime += Time.deltaTime / _durationMove;
-            // _rigidbody.MovePosition(transform.position + direction * Time.deltaTime * 20);
-            transform.position = Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z), new Vector3(endPosition.x, transform.position.y, transform.position.z), lostTime);
+            _rigidbody.MovePosition(Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z), new Vector3(endPosition.x, transform.position.y, transform.position.z), lostTime));
+            // transform.position = Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z), new Vector3(endPosition.x, transform.position.y, transform.position.z), lostTime);
             yield return null;
         }
 
+        _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         _coroutine = null;
     }
 }
