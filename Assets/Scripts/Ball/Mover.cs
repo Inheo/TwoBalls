@@ -2,10 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Ball))]
 public class Mover : MonoBehaviour
 {
-    private const string MOUSE_X_PARAMETER = "Mouse X";
     [SerializeField] private float _durationMove = 0.5f;
     [SerializeField] private SwipeInput _swipeInput;
 
