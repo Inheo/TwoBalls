@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using Scripts.Data;
 
 public class Level : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class Level : MonoBehaviour
         if (isWin == true)
         {
             IsLevelEnd = true;
+            PlayerProgress.GetData().CompleteLevel();
             OnLevelComplete?.Invoke();
         }
     }
