@@ -4,6 +4,7 @@ using Scripts.Data;
 
 public class Level : MonoBehaviour
 {
+    [SerializeField] private VFXPlayer _vfxPlayer;
     [SerializeField] private Ball[] _balls;
 
     public event System.Action OnLevelComplete;
@@ -56,7 +57,9 @@ public class Level : MonoBehaviour
         if (isWin == true)
         {
             IsLevelEnd = true;
+            _vfxPlayer.Play();
             PlayerProgress.GetData().CompleteLevel();
+            
             OnLevelComplete?.Invoke();
         }
     }
