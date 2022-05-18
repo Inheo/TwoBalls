@@ -1,64 +1,70 @@
-using System.Linq;
+using Scripts.Data;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Game : MonoBehaviour
+public class Game : MonoBehaviour, IStartCoroutine
 {
     [SerializeField] private GameObject _winPanel;
     [SerializeField] private GameObject _failPanel;
-    [SerializeField] private Ball[] _balls;
+    [SerializeField] private GameSettings _gameSettings;
 
-    public bool EndGame { get; private set; }
-
-    public static Game Instance { get; private set; }
+    private SceneLoader _sceneLoader;
 
     private void Awake()
     {
-        Instance = this;
+        _sceneLoader = new SceneLoader(this);
     }
 
     private void Start()
     {
-        EndGame = false;
-
-        _winPanel.SetActive(false);
-        _failPanel.SetActive(false);
-
-        for (int i = 0; i < _balls.Length; i++)
-        {
-            _balls[i].OnFinished += CheckWin;
-            _balls[i].OnFail += Fail;
-        }
+        StartLevel();
     }
 
     private void OnDestroy()
     {
-        for (int i = 0; i < _balls.Length; i++)
-        {
-            _balls[i].OnFinished -= CheckWin;
-            _balls[i].OnFail -= Fail;
-        }
+        Unsubscribe();
     }
 
-    private void CheckWin()
+    private void StartLevel()
     {
-        bool isWin = _balls.Where(ball => ball.IsFinished == true).Count() == _balls.Length;
+        _winPanel.SetActive(false);
+        _failPanel.SetActive(false);
 
-        if (isWin == true)
-        {
-            _winPanel.SetActive(true);
-            EndGame = true;
-        }
+        _sceneLoader.OnSceneLoaded += SceneLoaded;
+
+        _sceneLoader.TryLoadLevel(_gameSettings[PlayerProgress.GetData().Level].SceneName);
     }
 
-    private void Fail()
+    private void SceneLoaded()
+    {
+        _sceneLoader.OnSceneLoaded -= SceneLoaded;
+        Subscribe();
+    }
+
+    private void Subscribe()
+    {
+        Level.Instance.OnLevelComplete += ShowWinPanel;
+        Level.Instance.OnLevelFail += ShowFailPanel;
+    }
+
+    private void Unsubscribe()
+    {
+        Level.Instance.OnLevelComplete -= ShowWinPanel;
+        Level.Instance.OnLevelFail -= ShowFailPanel;
+    }
+
+    private void ShowWinPanel()
+    {
+        _winPanel.SetActive(true);
+    }
+
+    private void ShowFailPanel()
     {
         _failPanel.SetActive(true);
-        EndGame = true;
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Unsubscribe();
+        StartLevel();
     }
 }
