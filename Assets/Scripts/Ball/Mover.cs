@@ -8,7 +8,6 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _moveStep = 2;
     [SerializeField] private float _groundCheckerRadius = 0.2f;
     [SerializeField] private SwipeInput _swipeInput;
-    [SerializeField] private Transform _groundChecker;
     [SerializeField] private LayerMask _platformLayer;
 
     private Rigidbody _rigidbody;
@@ -28,7 +27,9 @@ public class Mover : MonoBehaviour
     private void Update()
     {
         if (_coroutine == null)
-            CanMove = Physics.OverlapSphereNonAlloc(_groundChecker.position, _groundCheckerRadius, _platformCollider, _platformLayer) > 0;
+        {
+            CanMove = Physics.OverlapSphereNonAlloc(transform.position + Vector3.down, _groundCheckerRadius, _platformCollider, _platformLayer) > 0;
+        }
     }
 
     private void OnDestroy()
@@ -83,10 +84,7 @@ public class Mover : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (_groundChecker != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(_groundChecker.position, _groundCheckerRadius);
-        }
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position + Vector3.down, _groundCheckerRadius);
     }
 }
