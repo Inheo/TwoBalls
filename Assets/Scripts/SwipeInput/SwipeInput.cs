@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class SwipeInput : MonoBehaviour
 {
+    private const string DEFAULT_SWIPE_POLICY_NAME = "swipe-policy";
     [SerializeField] private AbstractSwipePolicy _swipePolicy;
 
     public event System.Action<int> OnSwipeHorizontal;
 
     private Vector3 _startMousePosition;
+
+    private void Start()
+    {
+        if (_swipePolicy == null)
+        {
+            _swipePolicy = new GameObject(DEFAULT_SWIPE_POLICY_NAME).AddComponent<NormalSwipePolicy>();
+        }
+    }
 
     private void Update()
     {
