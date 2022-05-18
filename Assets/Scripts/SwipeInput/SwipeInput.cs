@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SwipeInput : MonoBehaviour
 {
+    [SerializeField] private AbstractSwipePolicy _swipePolicy;
+
     public event System.Action<int> OnSwipeHorizontal;
 
     private Vector3 _startMousePosition;
@@ -13,7 +15,7 @@ public class SwipeInput : MonoBehaviour
             _startMousePosition = Input.mousePosition;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && _swipePolicy.CanSwipe())
         {
             float distanceX = Input.mousePosition.x - _startMousePosition.x;
 
