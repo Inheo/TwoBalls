@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1290158997301597968}
   - component: {fileID: 1290158997301597969}
   - component: {fileID: 1290158997301597974}
+  - component: {fileID: 8243547996309401543}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290158997301597995}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4711208715938537054, guid: d1cca2eaf25244ed29ab3a0ee28b082b, type: 3}
 --- !u!23 &1290158997301597972
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -150,6 +151,25 @@ MonoBehaviour:
   _platformLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &8243547996309401543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290158997301597995}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf04d43d6c18748bcbad8c54da331460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Presets: 0
+  EffectIntensity: 1
+  gravity: 0
+  dampingX: 0.9
+  dampingY: 1
+  mass: 1
+  stiffness: 0.2
 --- !u!1 &6699797764076655659
 GameObject:
   m_ObjectHideFlags: 0

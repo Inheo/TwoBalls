@@ -328,7 +328,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 100
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 17
   m_Depth: -1
   m_CullingMask:
@@ -432,6 +432,10 @@ PrefabInstance:
     - target: {fileID: 4186783514871511442, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
       propertyPath: m_Name
       value: Level_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186783515846960934, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4495926039378050670, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
       propertyPath: _swipeInput
@@ -566,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4ceb6cbe2298840ba94ea06edca44b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _swipePolicy: {fileID: 0}
 --- !u!4 &1919013659
 Transform:
   m_ObjectHideFlags: 0

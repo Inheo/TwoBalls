@@ -1,3 +1,4 @@
+ 
 /* ******************************************************************************************************* *
  * RUBBER EFFECT                                                                                           *
  * You need to set the Vertex Colors of your 3d model, on your prefered 3d Modelling Tool                  *
@@ -24,7 +25,8 @@ public class RubberEffect : MonoBehaviour
  
     public float EffectIntensity = 1;
     public float gravity = 0;
-    public float damping = 0.7f;
+    public float dampingX = 0.9f;
+    public float dampingY = 0.25f;
     public float mass = 1;
     public float stiffness = 0.2f;
    
@@ -39,17 +41,19 @@ public class RubberEffect : MonoBehaviour
         public float v_gravity;
         public float v_mass;
         public float v_stiffness;
-        public float v_damping;
+        public float v_dampingX;
+        public float v_dampingY;
         public Vector3 pos;
  
         Vector3 vel = new Vector3();
  
-        public VertexRubber(Vector3 v_target, float m, float g, float s, float d)
+        public VertexRubber(Vector3 v_target, float m, float g, float s, float dX, float dY)
         {
             v_gravity = g;
             v_mass = m;
             v_stiffness = s;
-            v_damping = d;
+            v_dampingX = dX;
+            v_dampingY = dY;
  
             pos = v_target;
         }
@@ -62,18 +66,18 @@ public class RubberEffect : MonoBehaviour
  
             force.x = (target.x - pos.x) * v_stiffness;
             acc.x = force.x / v_mass;
-            vel.x = v_damping * (vel.x + acc.x);
+            vel.x = v_dampingX * (vel.x + acc.x);
             pos.x += vel.x;
  
             force.y = (target.y - pos.y) * v_stiffness;
             force.y -= v_gravity / 10;
             acc.y = force.y / v_mass;
-            vel.y = v_damping * (vel.y + acc.y);
+            vel.y = v_dampingY * (vel.y + acc.y);
             pos.y += vel.y;
  
             force.z = (target.z - pos.z) * v_stiffness;
             acc.z = force.z / v_mass;
-            vel.z = v_damping * (vel.z + acc.z);
+            vel.z = v_dampingY * (vel.z + acc.z);
             pos.z += vel.z;
  
         }
@@ -96,8 +100,8 @@ public class RubberEffect : MonoBehaviour
  
         for (int i = 0; i < OriginalMesh.vertices.Length; i++)
         {
-            vr[i] = new VertexRubber(transform.TransformPoint(OriginalMesh.vertices[i]), mass, gravity, stiffness, damping);
             ColorIntensity[i] = (1 - ((OriginalMesh.colors[i].r + OriginalMesh.colors[i].g + OriginalMesh.colors[i].b) / 3)) * EffectIntensity;
+            vr[i] = new VertexRubber(transform.TransformPoint(OriginalMesh.vertices[i]), mass, gravity, stiffness, dampingX, dampingY);
         }
  
     }
@@ -120,7 +124,8 @@ public class RubberEffect : MonoBehaviour
                 vr[i].v_gravity = gravity;
                 vr[i].v_mass = mass;
                 vr[i].v_stiffness = stiffness;
-                vr[i].v_damping = damping;
+                vr[i].v_dampingX = dampingX;
+                vr[i].v_dampingY = dampingY;
  
                 vr[i].update(v3_target);
  
@@ -145,28 +150,32 @@ public class RubberEffect : MonoBehaviour
                 gravity = 0f;
                 mass = 8f;
                 stiffness = 0.5f;
-                damping = 0.9f;
+                dampingX = 0.9f;
+                dampingY = 0.9f;
                 EffectIntensity = 0.5f;
                 break;
             case RubberType.Jelly:
                 gravity = 0f;
                 mass = 1f;
                 stiffness = 0.95f;
-                damping = 0.95f;
+                dampingX = 0.95f;
+                dampingY = 0.95f;
                 EffectIntensity = 1f;
                 break;
             case RubberType.RubberDuck:
                 gravity = 0f;
                 mass = 2f;
                 stiffness = 0.5f;
-                damping = 0.85f;
+                dampingX = 0.85f;
+                dampingY = 0.85f;
                 EffectIntensity = 1f;
                 break;
             case RubberType.SoftLatex:
                 gravity = 1f;
                 mass = 0.9f;
                 stiffness = 0.3f;
-                damping = 0.25f;
+                dampingX = 0.25f;
+                dampingY = 0.25f;
                 EffectIntensity = 1f;
                 break;
         }
@@ -174,3 +183,5 @@ public class RubberEffect : MonoBehaviour
     }
  
 }
+ 
+ 

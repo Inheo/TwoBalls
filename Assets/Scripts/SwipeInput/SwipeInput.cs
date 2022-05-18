@@ -14,6 +14,7 @@ public class SwipeInput : MonoBehaviour
         if (_swipePolicy == null)
         {
             _swipePolicy = new GameObject(DEFAULT_SWIPE_POLICY_NAME).AddComponent<AllMoversCanMoveSwipePolicy>();
+            _swipePolicy.transform.parent = transform;
         }
     }
 
