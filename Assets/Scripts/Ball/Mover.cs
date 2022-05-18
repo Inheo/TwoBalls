@@ -67,11 +67,7 @@ public class Mover : MonoBehaviour
         while (lostTime < 1)
         {
             lostTime += Time.deltaTime / _durationMove;
-
-            // _rigidbody.MovePosition(Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z),
-            //                                      new Vector3(endPosition.x, transform.position.y, transform.position.z), 
-            //                                      lostTime));
-
+            
             transform.position = Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z),
                                             new Vector3(endPosition.x, transform.position.y, transform.position.z),
                                             lostTime);
