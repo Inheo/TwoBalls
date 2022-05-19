@@ -702,11 +702,11 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    Android: CROSS_PLATFORM_INPUT;MOBILE_INPUT;MOREMOUNTAINS_NICEVIBRATIONS
-    Standalone: CROSS_PLATFORM_INPUT
+    Android: CROSS_PLATFORM_INPUT;MOBILE_INPUT;MOREMOUNTAINS_NICEVIBRATIONS;OBI_ONI_SUPPORTED
+    Standalone: CROSS_PLATFORM_INPUT;OBI_ONI_SUPPORTED
     WebGL: CROSS_PLATFORM_INPUT
     Windows Store Apps: CROSS_PLATFORM_INPUT
-    iPhone: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    iPhone: CROSS_PLATFORM_INPUT;MOBILE_INPUT;OBI_ONI_SUPPORTED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
