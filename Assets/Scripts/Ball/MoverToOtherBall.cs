@@ -18,11 +18,11 @@ public class MoverToOtherBall : MonoBehaviour
     }
 
     private void Update() {
-        if(_mover.IsMoved == false && Level.Instance.IsLevelEnd == false && Mathf.Abs(transform.position.x - _otherBall.transform.position.x) > 3f)
+        if(_mover.IsMoved == false && Level.Instance.IsLevelEnd == false && Mathf.Abs(transform.position.x - _otherBall.transform.position.x) > 2.5f)
         {
             Vector3 direction = (_otherBall.transform.position - transform.position).normalized;
             direction.y = 0;
-            direction.z = 0;
+            direction.z = transform.position.z > 0 ? -1 : transform.position.z < 0 ? 1 : 0;
 
             _obiActor.AddForce(direction * _moveForce * Time.deltaTime, ForceMode.Impulse);
         }
