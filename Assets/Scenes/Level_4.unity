@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 2a65e7ae4d05bc543b57392962ebe663, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: de414d1bc0ee1fd4a9115a330a826f9a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: NaN, g: NaN, b: NaN, a: 1}
+  m_IndirectSpecularColor: {r: 0.57511026, g: 0.7465539, b: 0.99999946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,6 +191,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ff21d5c930e864f9bd83e14500356b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &154604306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154604308}
+  - component: {fileID: 154604307}
+  m_Layer: 0
+  m_Name: BurstCollisionWorld
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &154604307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154604306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a161c4294214a4fbcb7e9e94800494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellSpans:
+    m_AlignBytes: 16
+--- !u!4 &154604308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154604306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &643084867
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,52 +407,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 21.327, y: -16.954, z: -12.247}
---- !u!1 &943963032
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 943963034}
-  - component: {fileID: 943963033}
-  m_Layer: 0
-  m_Name: BurstCollisionWorld
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &943963033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943963032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a161c4294214a4fbcb7e9e94800494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellSpans:
-    m_AlignBytes: 16
---- !u!4 &943963034
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943963032}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +517,10 @@ PrefabInstance:
       propertyPath: _vfxPlayer
       value: 
       objectReference: {fileID: 91738573}
+    - target: {fileID: 3329548974301516467, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06d031776fa783b41ae1f0a6a52c805b, type: 2}
     - target: {fileID: 3329548975175711042, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
       propertyPath: _swipeInput
       value: 
@@ -573,6 +577,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_4
       objectReference: {fileID: 0}
+    - target: {fileID: 4186783515479654897, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d48cd3195fef3994e8564ba3a30cda75, type: 2}
     - target: {fileID: 4186783515479654898, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
       propertyPath: m_Size.x
       value: 1.1
@@ -581,6 +589,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4186783515846960932, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d48cd3195fef3994e8564ba3a30cda75, type: 2}
     - target: {fileID: 4186783515846960933, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
       propertyPath: m_Size.x
       value: 1.05
@@ -597,6 +609,10 @@ PrefabInstance:
       propertyPath: _swipeInput
       value: 
       objectReference: {fileID: 1919013658}
+    - target: {fileID: 4599160258192712659, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06d031776fa783b41ae1f0a6a52c805b, type: 2}
     - target: {fileID: 5273733780595864174, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
       propertyPath: m_Size.x
       value: 1.071
@@ -609,6 +625,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6518815228737501447, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d48cd3195fef3994e8564ba3a30cda75, type: 2}
     - target: {fileID: 8115984708332239406, guid: df01897bdf74d4718a95eac99891d0b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0

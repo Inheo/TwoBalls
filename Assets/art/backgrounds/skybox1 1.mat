@@ -89,7 +89,7 @@ Material:
     - _DstBlend: 0
     - _EnableFog: 0
     - _EnableRotation: 1
-    - _Exponent: 1.1
+    - _Exponent: 1.14
     - _Exposure: 1
     - _Float0: 0
     - _FogFill: 0
@@ -118,15 +118,15 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _UpVectorPitch: 0
-    - _UpVectorYaw: 0
+    - _UpVectorYaw: 0.68
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 1, g: 1, b: 1, a: 0}
-    - _Color2: {r: 0.78690016, g: 0.6462264, b: 1, a: 1}
+    - _Color2: {r: 0.8650304, g: 0.64705884, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tex_HDR: {r: 1, g: 1, b: 0, a: 0}
     - _TintColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
-    - _UpVector: {r: 0, g: -3.71, b: 0, a: 0}
+    - _UpVector: {r: 0, g: -2.41, b: 0, a: 0}
   m_BuildTextureStacks: []
