@@ -16,6 +16,7 @@ public class Mover : MonoBehaviour
     public event System.Action OnMoveStart;
 
     public bool CanMove { get; private set; }
+    public bool IsMoved { get; private set; }
 
     private void Start()
     {
@@ -37,10 +38,18 @@ public class Mover : MonoBehaviour
     {
         if (Level.Instance.IsLevelEnd == false)
         {
+            IsMoved = true;
+            StartCoroutine(Delay(1.3f, () => IsMoved = false));
             Vector3 directionForce = Vector3.right * directionX * _force;
             directionForce.z = (directionForce - transform.position).normalized.z;
             _obiActor.AddForce(directionForce, ForceMode.Impulse);
         }
+    }
+
+    private IEnumerator Delay(float delayTime, System.Action action)
+    {
+        yield return new WaitForSeconds(delayTime);
+        action?.Invoke();
     }
 
     private void OnDrawGizmos()
