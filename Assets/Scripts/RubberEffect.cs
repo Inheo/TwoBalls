@@ -1,187 +1,242 @@
- 
-/* ******************************************************************************************************* *
- * RUBBER EFFECT                                                                                           *
- * You need to set the Vertex Colors of your 3d model, on your prefered 3d Modelling Tool                  *
- * by Rodrigo Pegorari - 2010 - [url]http://rodrigopegorari.net[/url]                                                 *
- * based on the Processing 'Chain' code example ([url]http://www.processing.org/learning/topics/chain.html[/url])     *
- * ******************************************************************************************************* */
- 
+﻿/***********************************************************************************************************
+ * RUBBER EFFECT                                                                                        *
+ * Changes: if the object is stopped, the vertices will sleep, saving CPU                                  *
+ * by Rodrigo Pegorari - 2010 - http://rodrigopegorari.com                                                 *
+ * based on the Processing 'Chain' code example (http://www.processing.org/learning/topics/chain.html)     *
+ ***********************************************************************************************************/
+
 using UnityEngine;
 using System.Collections;
- 
-public class RubberEffect : MonoBehaviour
+
+namespace JellyCube
 {
- 
-    public RubberType Presets;
- 
-    public enum RubberType
+    public class RubberEffect : MonoBehaviour
     {
-        Custom,
-        RubberDuck,
-        HardRubber,
-        Jelly,
-        SoftLatex
-    }
- 
-    public float EffectIntensity = 1;
-    public float gravity = 0;
-    public float dampingX = 0.9f;
-    public float dampingY = 0.25f;
-    public float mass = 1;
-    public float stiffness = 0.2f;
-   
- 
-    private Mesh WorkingMesh;
-    private Mesh OriginalMesh;
-    private float[] ColorIntensity;
-    private VertexRubber[] vr;
- 
-    internal class VertexRubber
-    {
-        public float v_gravity;
-        public float v_mass;
-        public float v_stiffness;
-        public float v_dampingX;
-        public float v_dampingY;
-        public Vector3 pos;
- 
-        Vector3 vel = new Vector3();
- 
-        public VertexRubber(Vector3 v_target, float m, float g, float s, float dX, float dY)
+        public RubberType m_Presets;
+
+        public enum RubberType
         {
-            v_gravity = g;
-            v_mass = m;
-            v_stiffness = s;
-            v_dampingX = dX;
-            v_dampingY = dY;
- 
-            pos = v_target;
+            Custom,
+            RubberDuck,
+            HardRubber,
+            Jelly,
+            SoftLatex
         }
- 
-        public void update(Vector3 target)
+
+        public float m_EffectIntensity = 1;
+        public float m_Damping = 0.7f;
+        public float m_Mass = 1;
+        public float m_Stiffness = 0.2f;
+
+        private Mesh WorkingMesh;
+        private Mesh OriginalMesh;
+
+        private VertexRubber[] vr;
+        private Vector3[] V3_WorkingMesh;
+        private MeshRenderer Renderer;
+
+        public bool sleeping = true;
+
+        private Vector3 last_world_position;
+        private Quaternion last_world_rotation;
+
+        internal class VertexRubber
         {
- 
-            Vector3 force = new Vector3();
-            Vector3 acc = new Vector3();
- 
-            force.x = (target.x - pos.x) * v_stiffness;
-            acc.x = force.x / v_mass;
-            vel.x = v_dampingX * (vel.x + acc.x);
-            pos.x += vel.x;
- 
-            force.y = (target.y - pos.y) * v_stiffness;
-            force.y -= v_gravity / 10;
-            acc.y = force.y / v_mass;
-            vel.y = v_dampingY * (vel.y + acc.y);
-            pos.y += vel.y;
- 
-            force.z = (target.z - pos.z) * v_stiffness;
-            acc.z = force.z / v_mass;
-            vel.z = v_dampingY * (vel.z + acc.z);
-            pos.z += vel.z;
- 
-        }
- 
-    }
- 
-   
-    void Start(){
- 
-        Debug.Log(Presets);
-        MeshFilter filter = (MeshFilter)GetComponent(typeof(MeshFilter));
-        OriginalMesh = filter.sharedMesh;
- 
-        WorkingMesh = Instantiate(filter.sharedMesh) as Mesh;
-        filter.sharedMesh = WorkingMesh;
- 
-        ColorIntensity = new float[OriginalMesh.vertices.Length];
- 
-        vr = new VertexRubber[OriginalMesh.vertices.Length];
- 
-        for (int i = 0; i < OriginalMesh.vertices.Length; i++)
-        {
-            ColorIntensity[i] = (1 - ((OriginalMesh.colors[i].r + OriginalMesh.colors[i].g + OriginalMesh.colors[i].b) / 3)) * EffectIntensity;
-            vr[i] = new VertexRubber(transform.TransformPoint(OriginalMesh.vertices[i]), mass, gravity, stiffness, dampingX, dampingY);
-        }
- 
-    }
- 
- 
-    void Update()
-    {
- 
-        checkPreset();
- 
-        Vector3[] V3_WorkingMesh = OriginalMesh.vertices;
- 
- 
-        for (int i = 0; i < V3_WorkingMesh.Length; i++)
-        {
-            if (!float.Equals(ColorIntensity[i],0f)){
- 
-                Vector3 v3_target = transform.TransformPoint(V3_WorkingMesh[i]);
- 
-                vr[i].v_gravity = gravity;
-                vr[i].v_mass = mass;
-                vr[i].v_stiffness = stiffness;
-                vr[i].v_dampingX = dampingX;
-                vr[i].v_dampingY = dampingY;
- 
-                vr[i].update(v3_target);
- 
-                v3_target = transform.InverseTransformPoint(vr[i].pos);
- 
-                V3_WorkingMesh[i] = Vector3.Lerp(V3_WorkingMesh[i], v3_target, ColorIntensity[i] * EffectIntensity);
- 
+            public int indexId;
+            public float mass;
+            public float stiffness;
+            public float damping;
+            public float intensity;
+            public Vector3 pos;
+            public Vector3 target;
+            public Vector3 force;
+            public Vector3 acc;
+            private bool v_sleeping = false;
+
+            public bool sleeping
+            {
+                get { return v_sleeping; }
+                set { v_sleeping = value; }
             }
- 
+
+            private const float STOP_LIMIT = 0.001f;
+
+            Vector3 vel = new Vector3();
+
+            public VertexRubber(Vector3 v_target, float m, float s, float d)
+            {
+                mass = m;
+                stiffness = s;
+                damping = d;
+                intensity = 1;
+                pos = target = v_target;
+                sleeping = false;
+            }
+
+            public void update(Vector3 target)
+            {   
+                if (v_sleeping)
+                {
+                    return;
+                }
+
+                force = (target - pos) * stiffness;
+                acc = force / mass;
+                vel = (vel + acc) * damping;
+                pos += vel;
+
+                if ((vel + force + acc).magnitude < STOP_LIMIT)
+                {
+                    pos = target;
+                    v_sleeping = true;
+                }
+            }
         }
- 
-        WorkingMesh.vertices = V3_WorkingMesh;
-        WorkingMesh.RecalculateBounds();
- 
-    }
- 
-    void checkPreset() {
-           
-        switch (Presets)
+
+        void OnValidate()
         {
-            case RubberType.HardRubber:
-                gravity = 0f;
-                mass = 8f;
-                stiffness = 0.5f;
-                dampingX = 0.9f;
-                dampingY = 0.9f;
-                EffectIntensity = 0.5f;
-                break;
-            case RubberType.Jelly:
-                gravity = 0f;
-                mass = 1f;
-                stiffness = 0.95f;
-                dampingX = 0.95f;
-                dampingY = 0.95f;
-                EffectIntensity = 1f;
-                break;
-            case RubberType.RubberDuck:
-                gravity = 0f;
-                mass = 2f;
-                stiffness = 0.5f;
-                dampingX = 0.85f;
-                dampingY = 0.85f;
-                EffectIntensity = 1f;
-                break;
-            case RubberType.SoftLatex:
-                gravity = 1f;
-                mass = 0.9f;
-                stiffness = 0.3f;
-                dampingX = 0.25f;
-                dampingY = 0.25f;
-                EffectIntensity = 1f;
-                break;
+            checkPreset();
         }
-   
+
+        void Start()
+        {
+            checkPreset();
+
+            MeshFilter filter = (MeshFilter)GetComponent(typeof(MeshFilter));
+            OriginalMesh = filter.sharedMesh;
+
+            WorkingMesh = Instantiate(filter.sharedMesh) as Mesh;
+            filter.sharedMesh = WorkingMesh;
+
+            ArrayList ActiveVertex = new ArrayList();
+
+            for (int i = 0; i < WorkingMesh.vertices.Length; i++)
+            {
+                ActiveVertex.Add(i);
+            }
+
+            vr = new VertexRubber[ActiveVertex.Count];
+
+            for (int i = 0; i < ActiveVertex.Count; i++)
+            {
+                int ref_index = (int)ActiveVertex[i];
+                vr[i] = new VertexRubber(transform.TransformPoint(WorkingMesh.vertices[ref_index]), m_Mass, m_Stiffness, m_Damping);
+                vr[i].indexId = ref_index;
+            }
+
+            Renderer = GetComponent<MeshRenderer>();
+
+            WakeUp();
+        }
+
+        void WakeUp()
+        {
+            for (int i = 0; i < vr.Length; i++)
+            {
+                vr[i].sleeping = false;
+            }
+
+            sleeping = false;
+        }
+
+        void FixedUpdate()
+        {
+            if ((this.transform.position != last_world_position || this.transform.rotation != last_world_rotation))
+            {
+                WakeUp();
+            }
+
+            if (!sleeping)
+            {
+                V3_WorkingMesh = OriginalMesh.vertices;
+
+                int v_sleeping_counter = 0;
+
+                for (int i = 0; i < vr.Length; i++)
+                {
+                    if (vr[i].sleeping)
+                    {
+                        v_sleeping_counter++;
+                    }
+                    else
+                    {
+                        Vector3 v3_target = transform.TransformPoint(V3_WorkingMesh[vr[i].indexId]);
+
+                        vr[i].mass = m_Mass;
+                        vr[i].stiffness = m_Stiffness;
+                        vr[i].damping = m_Damping;
+
+                        vr[i].intensity = (1 - (Renderer.bounds.max.y - v3_target.y) / Renderer.bounds.size.y) * m_EffectIntensity;
+                        vr[i].update(v3_target);
+
+                        v3_target = transform.InverseTransformPoint(vr[i].pos);
+
+                        V3_WorkingMesh[vr[i].indexId] = Vector3.Lerp(V3_WorkingMesh[vr[i].indexId], v3_target, vr[i].intensity);
+
+                    }
+                }
+
+                WorkingMesh.vertices = V3_WorkingMesh;
+
+                if (this.transform.position == last_world_position && this.transform.rotation == last_world_rotation && v_sleeping_counter == vr.Length)
+                {
+                    sleeping = true;
+                }
+                else
+                {
+                    last_world_position = this.transform.position;
+                    last_world_rotation = this.transform.rotation;
+                }
+            }
+        }
+        /*
+        void OnDrawGizmos()
+        {
+            if (vr == null){
+                return;
+            }
+        
+            for (int i = 0; i < vr.Length; i++)
+            {
+                Gizmos.color = new Color(vr[i].v_intensity, vr[i].v_intensity, vr[i].v_intensity);
+                Gizmos.DrawCube(transform.TransformPoint(WorkingMesh.vertices[vr[i].indexId]), Vector3.one * 0.05f);
+            }
+        }*/
+
+        void checkPreset()
+        {
+            switch (m_Presets)
+            {
+                case RubberType.HardRubber:
+                    m_Mass = 8f;
+                    m_Stiffness = 0.5f;
+                    m_Damping = 0.9f;
+                    m_EffectIntensity = 0.5f;
+                    break;
+                case RubberType.Jelly:
+                    m_Mass = 1f;
+                    m_Stiffness = 0.95f;
+                    m_Damping = 0.95f;
+                    m_EffectIntensity = 1f;
+                    break;
+                case RubberType.RubberDuck:
+                    m_Mass = 2f;
+                    m_Stiffness = 0.5f;
+                    m_Damping = 0.85f;
+                    m_EffectIntensity = 1f;
+                    break;
+                case RubberType.SoftLatex:
+                    m_Mass = 0.9f;
+                    m_Stiffness = 0.3f;
+                    m_Damping = 0.25f;
+                    m_EffectIntensity = 1f;
+                    break;
+            }
+
+            m_Mass = Mathf.Max(m_Mass, 0);
+            m_Stiffness = Mathf.Max(m_Stiffness, 0);
+            //m_Damping = Mathf.Clamp(m_Damping, 0, 1);
+            m_EffectIntensity = Mathf.Clamp(m_EffectIntensity, 0, 1);
+        }
     }
- 
 }
- 
- 

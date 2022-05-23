@@ -160,7 +160,6 @@ GameObject:
   - component: {fileID: 4024875798470508370}
   - component: {fileID: 4024875798470508371}
   - component: {fileID: 4024875798470508368}
-  - component: {fileID: 4855685212873365076}
   m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -211,7 +210,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c0c67d2cc96c5645a616a2a9d43c82e, type: 2}
+  - {fileID: 2100000, guid: d48cd3195fef3994e8564ba3a30cda75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -246,23 +245,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4855685212873365076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4024875798470508382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thickness: 0
-  material: {fileID: 0}
-  filter: -65535
-  m_SourceCollider: {fileID: 4024875798470508368}
-  m_DistanceField: {fileID: 0}
 --- !u!1 &4024875798700357227
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +374,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c0c67d2cc96c5645a616a2a9d43c82e, type: 2}
+  - {fileID: 2100000, guid: d48cd3195fef3994e8564ba3a30cda75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -456,7 +438,6 @@ GameObject:
   - component: {fileID: 4024875798963301816}
   - component: {fileID: 4024875798963301817}
   - component: {fileID: 4024875798963301798}
-  - component: {fileID: 8240388164998784697}
   m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -507,7 +488,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c0c67d2cc96c5645a616a2a9d43c82e, type: 2}
+  - {fileID: 2100000, guid: d48cd3195fef3994e8564ba3a30cda75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -542,23 +523,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8240388164998784697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4024875798963301796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thickness: 0
-  material: {fileID: 0}
-  filter: -65535
-  m_SourceCollider: {fileID: 4024875798963301798}
-  m_DistanceField: {fileID: 0}
 --- !u!1 &4292569458032606782
 GameObject:
   m_ObjectHideFlags: 0

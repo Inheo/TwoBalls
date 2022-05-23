@@ -2,31 +2,22 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Mover : MonoBehaviour
+public class NormalMover : MonoBehaviour
 {
     [SerializeField] private float _durationMove = 0.5f;
     [SerializeField] private float _moveStep = 2;
-    [SerializeField] private float _groundCheckerRadius = 0.2f;
     [SerializeField] private SwipeInput _swipeInput;
-    [SerializeField] private LayerMask _platformLayer;
+    [SerializeField] private LayerMask _paltformLayer;
 
     private Rigidbody _rigidbody;
     private Coroutine _coroutine;
-    private Collider[] _platformCollider = new Collider[1];
 
     public event System.Action OnMoveStart;
-
-    public bool CanMove { get; private set; }
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _swipeInput.OnSwipeHorizontal += Move;
-    }
-
-    private void Update()
-    {
-        CanMove = Physics.OverlapSphereNonAlloc(transform.position + Vector3.down, _groundCheckerRadius, _platformCollider, _platformLayer) > 0;
     }
 
     private void OnDestroy()
@@ -48,7 +39,7 @@ public class Mover : MonoBehaviour
         Vector3 endPosition = transform.position + direction * _moveStep;
         _rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
 
-        if (Physics.Raycast(startPosition, direction, out RaycastHit hit, _moveStep, _platformLayer))
+        if (Physics.Raycast(startPosition, direction, out RaycastHit hit, _moveStep, _paltformLayer))
         {
             Vector3 hitPoint = hit.point;
             hitPoint.x = hitPoint.x + (_moveStep * 0.5f * Mathf.Sign(-direction.x));
@@ -77,10 +68,5 @@ public class Mover : MonoBehaviour
 
         _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         _coroutine = null;
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position + Vector3.down, _groundCheckerRadius);
     }
 }
