@@ -46,7 +46,7 @@ public class Mover : MonoBehaviour
         Vector3 startPoint = transform.position;
         Vector3 endPoint = transform.position + direction * _moveStep;
 
-        Check(direction, startPoint, ref endPoint, ref lostTime);
+        Cast(direction, startPoint, ref endPoint, ref lostTime);
 
         while (lostTime < 1)
         {
@@ -61,7 +61,7 @@ public class Mover : MonoBehaviour
         _coroutine = null;
     }
 
-    private void Check(Vector3 direction, Vector3 startPoint, ref Vector3 endPoint, ref float lostTime)
+    private void Cast(Vector3 direction, Vector3 startPoint, ref Vector3 endPoint, ref float lostTime)
     {
         if (CastRay(startPoint, direction, out RaycastHit hit, _moveStep, _ballLayer))
         {
