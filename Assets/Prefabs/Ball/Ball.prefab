@@ -149,7 +149,7 @@ MonoBehaviour:
   _platformLayer:
     serializedVersion: 2
     m_Bits: 64
-  _playerLayer:
+  _ballLayer:
     serializedVersion: 2
     m_Bits: 1024
 --- !u!114 &7900745076378413757

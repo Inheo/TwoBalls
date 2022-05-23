@@ -8,7 +8,7 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _moveStep = 2;
     [SerializeField] private SwipeInput _swipeInput;
     [SerializeField] private LayerMask _platformLayer;
-    [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private LayerMask _ballLayer;
 
     private SphereCollider _sphereCollider;
 
@@ -57,24 +57,20 @@ public class Mover : MonoBehaviour
                                             lostTime);
             yield return null;
         }
+
         _coroutine = null;
     }
 
     private void Check(Vector3 direction, Vector3 startPoint, ref Vector3 endPoint, ref float lostTime)
     {
-        if (CastRay(startPoint, direction, out RaycastHit hit, _moveStep / 2, _playerLayer))
+        if (CastRay(startPoint, direction, out RaycastHit hit, _moveStep, _ballLayer))
         {
-            if (CastRay(startPoint, direction, out hit, _moveStep * 2, _platformLayer))
-            {
-                Vector3 hitPoint = hit.point;
-                hitPoint.x = hitPoint.x + (Radius * Mathf.Sign(-direction.x)) - _moveStep;
-                float distance = Vector3.Distance(startPoint, hitPoint);
+            startPoint = hit.rigidbody.position;
 
-                if (distance < _moveStep)
-                {
-                    endPoint.x = hitPoint.x;
-                    lostTime = 1 - distance / _moveStep;
-                }
+            if (CastRay(startPoint, direction, out hit, _moveStep, _platformLayer))
+            {
+                CalculateMoveToPoint(direction, startPoint, hit.point, ref endPoint, ref lostTime);
+                endPoint.x -= _moveStep * Mathf.Sign(direction.x);
             }
 
             return;
@@ -82,20 +78,24 @@ public class Mover : MonoBehaviour
 
         if (CastRay(startPoint, direction, out hit, _moveStep, _platformLayer))
         {
-            Vector3 hitPoint = hit.point;
-            hitPoint.x = hitPoint.x + (Radius * Mathf.Sign(-direction.x));
-            float distance = Vector3.Distance(startPoint, hitPoint);
-
-            if (distance < _moveStep)
-            {
-                endPoint.x = hitPoint.x;
-                lostTime = 1 - distance / _moveStep;
-            }
+            CalculateMoveToPoint(direction, startPoint, hit.point, ref endPoint, ref lostTime);
         }
     }
 
     private bool CastRay(Vector3 origin, Vector3 direction, out RaycastHit hit, float distance, int layer)
     {
         return Physics.Raycast(origin, direction, out hit, distance, layer);
+    }
+
+    private void CalculateMoveToPoint(Vector3 direction, Vector3 startPoint, Vector3 hitPoint, ref Vector3 endPoint, ref float lostTime)
+    {
+        hitPoint.x = hitPoint.x - (Radius * Mathf.Sign(direction.x));
+        float distance = Vector3.Distance(startPoint, hitPoint);
+
+        if (distance < _moveStep)
+        {
+            endPoint.x = hitPoint.x;
+            lostTime = 1 - distance / _moveStep;
+        }
     }
 }
