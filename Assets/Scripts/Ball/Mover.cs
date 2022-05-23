@@ -1,32 +1,30 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(SphereCollider))]
 public class Mover : MonoBehaviour
 {
     [SerializeField] private float _durationMove = 0.5f;
     [SerializeField] private float _moveStep = 2;
-    [SerializeField] private float _groundCheckerRadius = 0.2f;
     [SerializeField] private SwipeInput _swipeInput;
     [SerializeField] private LayerMask _platformLayer;
+    [SerializeField] private LayerMask _playerLayer;
 
-    private Rigidbody _rigidbody;
+    private SphereCollider _sphereCollider;
+
     private Coroutine _coroutine;
-    private Collider[] _platformCollider = new Collider[1];
 
     public event System.Action OnMoveStart;
+    public float Radius => _sphereCollider.radius * transform.lossyScale.x;
 
-    public bool CanMove { get; private set; }
+    private void Awake()
+    {
+        _sphereCollider = GetComponent<SphereCollider>();
+    }
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _swipeInput.OnSwipeHorizontal += Move;
-    }
-
-    private void Update()
-    {
-        CanMove = Physics.OverlapSphereNonAlloc(transform.position + Vector3.down, _groundCheckerRadius, _platformCollider, _platformLayer) > 0;
     }
 
     private void OnDestroy()
@@ -43,44 +41,61 @@ public class Mover : MonoBehaviour
     private IEnumerator MoveTo(Vector3 direction)
     {
         OnMoveStart?.Invoke();
+
         float lostTime = 0;
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = transform.position + direction * _moveStep;
-        _rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
+        Vector3 startPoint = transform.position;
+        Vector3 endPoint = transform.position + direction * _moveStep;
 
-        if (Physics.Raycast(startPosition, direction, out RaycastHit hit, _moveStep, _platformLayer))
-        {
-            Vector3 hitPoint = hit.point;
-            hitPoint.x = hitPoint.x + (_moveStep * 0.5f * Mathf.Sign(-direction.x));
-            float distance = Vector3.Distance(startPosition, hitPoint);
-
-            if (distance < _moveStep)
-            {
-                endPosition.x = hitPoint.x;
-                lostTime = 1 - distance / _moveStep;
-            }
-        }
+        Check(direction, startPoint, ref endPoint, ref lostTime);
 
         while (lostTime < 1)
         {
             lostTime += Time.deltaTime / _durationMove;
 
-            // _rigidbody.MovePosition(Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z),
-            //                                      new Vector3(endPosition.x, transform.position.y, transform.position.z), 
-            //                                      lostTime));
-
-            transform.position = Vector3.Lerp(new Vector3(startPosition.x, transform.position.y, transform.position.z),
-                                            new Vector3(endPosition.x, transform.position.y, transform.position.z),
+            transform.position = Vector3.Lerp(new Vector3(startPoint.x, transform.position.y, transform.position.z),
+                                            new Vector3(endPoint.x, transform.position.y, transform.position.z),
                                             lostTime);
             yield return null;
         }
-
-        _rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         _coroutine = null;
     }
-    private void OnDrawGizmos()
+
+    private void Check(Vector3 direction, Vector3 startPoint, ref Vector3 endPoint, ref float lostTime)
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position + Vector3.down, _groundCheckerRadius);
+        if (CastRay(startPoint, direction, out RaycastHit hit, _moveStep / 2, _playerLayer))
+        {
+            if (CastRay(startPoint, direction, out hit, _moveStep * 2, _platformLayer))
+            {
+                Vector3 hitPoint = hit.point;
+                hitPoint.x = hitPoint.x + (Radius * Mathf.Sign(-direction.x)) - _moveStep;
+                float distance = Vector3.Distance(startPoint, hitPoint);
+
+                if (distance < _moveStep)
+                {
+                    endPoint.x = hitPoint.x;
+                    lostTime = 1 - distance / _moveStep;
+                }
+            }
+
+            return;
+        }
+
+        if (CastRay(startPoint, direction, out hit, _moveStep, _platformLayer))
+        {
+            Vector3 hitPoint = hit.point;
+            hitPoint.x = hitPoint.x + (Radius * Mathf.Sign(-direction.x));
+            float distance = Vector3.Distance(startPoint, hitPoint);
+
+            if (distance < _moveStep)
+            {
+                endPoint.x = hitPoint.x;
+                lostTime = 1 - distance / _moveStep;
+            }
+        }
+    }
+
+    private bool CastRay(Vector3 origin, Vector3 direction, out RaycastHit hit, float distance, int layer)
+    {
+        return Physics.Raycast(origin, direction, out hit, distance, layer);
     }
 }
