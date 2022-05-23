@@ -56,6 +56,14 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(_currentFinish == null && other.TryGetComponent(out Finish finish))
+        {
+            _currentFinish = finish;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out Finish finish) && _currentFinish == finish)
