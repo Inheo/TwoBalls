@@ -592,6 +592,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1164632256845667007, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4005537472905872883, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: _swipeInput
       value: 
