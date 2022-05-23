@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948dd2dd53bca4256bfed0acffb5eb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _durationMove: 0.2
+  _durationMove: 0.1
   _moveStep: 2
   _swipeInput: {fileID: 0}
   _platformLayer:
