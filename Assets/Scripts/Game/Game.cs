@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Game : MonoBehaviour, IStartCoroutine
 {
-    [SerializeField] private GameObject _winPanel;
-    [SerializeField] private GameObject _failPanel;
+    [SerializeField] private FadePanel _winPanel;
+    [SerializeField] private FadePanel _failPanel;
     [SerializeField] private GameSettings _gameSettings;
 
     private SceneLoader _sceneLoader;
@@ -26,8 +26,8 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void StartLevel()
     {
-        _winPanel.SetActive(false);
-        _failPanel.SetActive(false);
+        _winPanel.Hide(true);
+        _failPanel.Hide(true);
 
         _sceneLoader.OnSceneLoaded += SceneLoaded;
 
@@ -54,12 +54,12 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void ShowWinPanel()
     {
-        _winPanel.SetActive(true);
+        _winPanel.Show();
     }
 
     private void ShowFailPanel()
     {
-        _failPanel.SetActive(true);
+        _failPanel.Show();
     }
 
     public void RestartGame()
