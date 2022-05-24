@@ -63,11 +63,11 @@ public class Mover : MonoBehaviour
 
     private void Cast(Vector3 direction, Vector3 startPoint, ref Vector3 endPoint, ref float lostTime)
     {
-        if (CastRay(startPoint, direction, out RaycastHit hit, _moveStep, _ballLayer))
+        if (CastRay(startPoint, direction, out RaycastHit hit, _moveStep + Radius, _ballLayer))
         {
             startPoint = hit.rigidbody.position;
 
-            if (CastRay(startPoint, direction, out hit, _moveStep, _platformLayer))
+            if (CastRay(startPoint, direction, out hit, _moveStep + Radius, _platformLayer))
             {
                 CalculateMoveToPoint(direction, startPoint, hit.point, ref endPoint, ref lostTime);
                 endPoint.x -= _moveStep * Mathf.Sign(direction.x);
@@ -76,7 +76,7 @@ public class Mover : MonoBehaviour
             return;
         }
 
-        if (CastRay(startPoint, direction, out hit, _moveStep, _platformLayer))
+        if (CastRay(startPoint, direction, out hit, _moveStep + Radius, _platformLayer))
         {
             CalculateMoveToPoint(direction, startPoint, hit.point, ref endPoint, ref lostTime);
         }
@@ -95,7 +95,6 @@ public class Mover : MonoBehaviour
         if (distance < _moveStep)
         {
             endPoint.x = hitPoint.x;
-            lostTime = 1 - distance / _moveStep;
         }
     }
 }
