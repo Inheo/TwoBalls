@@ -5,6 +5,7 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private float _snapDistance = 0.1f;
     [SerializeField] private TrailRenderer _trailRenderer;
+    [SerializeField] private ParticleSystem _deadVFXPrefab;
 
     private Mover _mover;
     private Finish _currentFinish;
@@ -57,6 +58,8 @@ public class Ball : MonoBehaviour
         if (other.TryGetComponent(out FailPlatform fail))
         {
             OnFail?.Invoke();
+            Instantiate(_deadVFXPrefab, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
         }
     }
 
