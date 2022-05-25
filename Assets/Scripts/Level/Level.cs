@@ -88,10 +88,10 @@ public class Level : MonoBehaviour
 
         for (int i = 0; i < countSteps - 1; i++)
         {
-            MMVibrationManager.ContinuousHaptic(0.3f, 0.8f, oneStepDuration, HapticTypes.Success, this);
+            MMVibrationManager.ContinuousHaptic(0.2f, 0.8f, oneStepDuration, HapticTypes.Success, this);
             yield return delay;
         }
 
-        MMVibrationManager.ContinuousHaptic(0.3f, 0.8f, oneStepDuration * 2.3f, HapticTypes.Success, this);
+        MMVibrationManager.ContinuousHaptic(0.2f, 0.8f, oneStepDuration * 2.3f, HapticTypes.Success, this);
     }
 }
