@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3250307850255197637, guid: 34671387965458f409d074684bc1215a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3250307850255197637, guid: 34671387965458f409d074684bc1215a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -453,7 +453,6 @@ GameObject:
   - component: {fileID: 1884371108}
   - component: {fileID: 1884371107}
   - component: {fileID: 1884371106}
-  - component: {fileID: 1884371105}
   m_Layer: 0
   m_Name: bg
   m_TagString: Untagged
@@ -461,20 +460,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1884371105
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884371104}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1884371106
 MeshRenderer:
   m_ObjectHideFlags: 0
