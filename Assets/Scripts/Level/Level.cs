@@ -62,7 +62,7 @@ public class Level : MonoBehaviour
             IsLevelEnd = true;
             _vfxPlayer.Play();
             PlayerProgress.GetData().CompleteLevel();
-            PlayWinVibration(0.8f, 3);
+            PlayWinVibration(8);
 
             OnLevelComplete?.Invoke();
         }
@@ -76,22 +76,19 @@ public class Level : MonoBehaviour
         OnLevelFail?.Invoke();
     }
 
-    private void PlayWinVibration(float duration, int countSteps)
+    private void PlayWinVibration(int countSteps)
     {
-        StartCoroutine(PlayVibration(duration, countSteps));
+        StartCoroutine(PlayVibration(countSteps));
     }
 
-    private IEnumerator PlayVibration(float durationAllVibration, int countSteps)
+    private IEnumerator PlayVibration(int countSteps)
     {
-        float oneStepDuration = durationAllVibration / countSteps;
-        WaitForSeconds delay = new WaitForSeconds(oneStepDuration * 1.5f);
+        WaitForSeconds delay = new WaitForSeconds(0.15f);
 
         for (int i = 0; i < countSteps - 1; i++)
         {
-            MMVibrationManager.ContinuousHaptic(0.2f, 0.8f, oneStepDuration, HapticTypes.Success, this);
+            MMVibrationManager.Haptic(HapticTypes.MediumImpact);
             yield return delay;
         }
-
-        MMVibrationManager.ContinuousHaptic(0.2f, 0.8f, oneStepDuration * 2.3f, HapticTypes.Success, this);
     }
 }
