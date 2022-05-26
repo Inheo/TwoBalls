@@ -4,6 +4,7 @@ using Scripts.Data;
 
 public class LevelViewer : MonoBehaviour
 {
+    private const string LEVEL_PARAMETER = "Level: ";
     [SerializeField] private Game _game;
 
     private TextMeshProUGUI _levelText;
@@ -20,6 +21,6 @@ public class LevelViewer : MonoBehaviour
     
     private void UpdateUI()
     {
-        _levelText.text = "Level: " + PlayerProgress.GetData().Level;
+        _levelText.text = LEVEL_PARAMETER + (PlayerProgress.GetData().Level + 1);
     }
 }
