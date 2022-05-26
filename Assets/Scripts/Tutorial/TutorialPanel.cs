@@ -11,7 +11,7 @@ public class TutorialPanel : MonoBehaviour
    {
        if(PlayerProgress.GetData().IsSwipeTutorialComplete == true)
        {
-           gameObject.SetActive(true);
+           gameObject.SetActive(false);
            return;
        }
 

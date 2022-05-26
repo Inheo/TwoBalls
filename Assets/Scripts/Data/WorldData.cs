@@ -23,6 +23,7 @@ namespace Scripts.Data
         public void SwipeTutorialCompleted()
         {
             IsSwipeTutorialComplete = true;
+            PlayerProgress.Save();
         }
     }
 }
