@@ -62,7 +62,7 @@ public class Level : MonoBehaviour
             IsLevelEnd = true;
             _vfxPlayer.Play();
             PlayerProgress.GetData().CompleteLevel();
-            PlayWinVibration(8);
+            PlayWinVibration(7);
 
             OnLevelComplete?.Invoke();
         }
@@ -85,7 +85,7 @@ public class Level : MonoBehaviour
     {
         WaitForSeconds delay = new WaitForSeconds(0.15f);
 
-        for (int i = 0; i < countSteps - 1; i++)
+        for (int i = 0; i < countSteps; i++)
         {
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
             yield return delay;
