@@ -9,6 +9,8 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private SceneLoader _sceneLoader;
 
+    public event System.Action OnStartLevel;
+
     private void Awake()
     {
         _sceneLoader = new SceneLoader(this);
@@ -26,6 +28,7 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void StartLevel()
     {
+        OnStartLevel?.Invoke();
         _winPanel.Hide(true);
         _failPanel.Hide(true);
 
