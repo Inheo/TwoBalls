@@ -44,6 +44,15 @@ public class Ball : MonoBehaviour
             {
                 IsFinished = true;
                 OnFinished?.Invoke();
+                if(_ripple == null)
+                {
+                    _ripple = StartCoroutine(Ripple());
+                }
+            }
+            else if(_ripple != null)
+            {
+                StopCoroutine(_ripple);
+                _ripple = null;
             }
         }
     }
@@ -91,7 +100,10 @@ public class Ball : MonoBehaviour
         IsFinished = false;
 
         if (_ripple != null)
+        {
             StopCoroutine(_ripple);
+            _ripple = null;
+        }
 
         transform.localScale = _startScale;
     }
@@ -99,6 +111,9 @@ public class Ball : MonoBehaviour
     private void SetFinish(Finish finish)
     {
         _currentFinish = finish;
+
+        if(_ripple != null)
+            StopCoroutine(_ripple);
 
         _ripple = StartCoroutine(Ripple());
     }
