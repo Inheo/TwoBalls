@@ -12,10 +12,6 @@ public class LevelViewer : MonoBehaviour
     private void Awake()
     {
         _levelText = GetComponent<TextMeshProUGUI>();
-    }
-
-    private void Start()
-    {
         _game.OnStartLevel += UpdateUI;
     }
     
