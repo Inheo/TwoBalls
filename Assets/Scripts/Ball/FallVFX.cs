@@ -7,6 +7,7 @@ public class FallVFX : MonoBehaviour
     [SerializeField] private ParticleSystem _vfx;
 
     private Rigidbody _rigidbody;
+    private TrailRenderer _trailRenderer;
 
     private readonly float _delay = 0.3f;
     private float _lostTime = 0;
@@ -14,6 +15,7 @@ public class FallVFX : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void Update()
@@ -23,6 +25,7 @@ public class FallVFX : MonoBehaviour
             _vfx.Play();
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
             _lostTime = 0;
+            _trailRenderer.emitting = false;
         }
 
         _lostTime += Time.deltaTime;
