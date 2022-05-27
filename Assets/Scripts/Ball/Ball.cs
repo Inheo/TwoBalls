@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private float _snapDistance = 0.1f;
     [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private ParticleSystem _deadVFXPrefab;
+    [SerializeField] private Transform _rippleTransform;
 
     private Mover _mover;
     private Finish _currentFinish;
@@ -29,7 +30,7 @@ public class Ball : MonoBehaviour
 
         _trailRenderer.enabled = false;
 
-        _startScale = transform.localScale;
+        _startScale = _rippleTransform.localScale;
     }
 
     private void OnDestroy()
@@ -108,7 +109,7 @@ public class Ball : MonoBehaviour
             _ripple = null;
         }
 
-        transform.localScale = _startScale;
+        _rippleTransform.localScale = _startScale;
     }
 
     private void SetFinish(Finish finish)
@@ -132,14 +133,14 @@ public class Ball : MonoBehaviour
             while (lostTime < 1)
             {
                 lostTime += Time.deltaTime / duration;
-                transform.localScale = Vector3.Lerp(_startScale, endScale, lostTime);
+                _rippleTransform.localScale = Vector3.Lerp(_startScale, endScale, lostTime);
                 yield return null;
             }
 
             while (lostTime > 0)
             {
                 lostTime -= Time.deltaTime / duration;
-                transform.localScale = Vector3.Lerp(_startScale, endScale, lostTime);
+                _rippleTransform.localScale = Vector3.Lerp(_startScale, endScale, lostTime);
                 yield return null;
             }
         }
