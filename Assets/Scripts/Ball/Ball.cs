@@ -25,6 +25,7 @@ public class Ball : MonoBehaviour
         _mover = GetComponent<Mover>();
 
         _mover.OnMoveStart += ResetFinish;
+        _mover.OnMoveStart += () => _trailRenderer.emitting = true;
 
         _trailRenderer.enabled = false;
 
@@ -34,6 +35,8 @@ public class Ball : MonoBehaviour
     private void OnDestroy()
     {
         _mover.OnMoveStart -= ResetFinish;
+        _mover.OnMoveStart -= () => _trailRenderer.emitting = true;
+
     }
 
     private void LateUpdate()
