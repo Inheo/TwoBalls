@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Mover))]
+[RequireComponent(typeof(Rigidbody))]
 public class Ball : MonoBehaviour
 {
     [SerializeField] private float _snapDistance = 0.1f;
@@ -10,6 +11,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private Transform _rippleTransform;
 
     private Mover _mover;
+    private Rigidbody _rigidbody;
     private Finish _currentFinish;
 
     private Vector3 _startScale;
@@ -24,6 +26,7 @@ public class Ball : MonoBehaviour
     {
         IsFinished = false;
         _mover = GetComponent<Mover>();
+        _rigidbody = GetComponent<Rigidbody>();
 
         _mover.OnMoveStart += ResetFinish;
         _mover.OnMoveStart += () => _trailRenderer.emitting = true;
@@ -81,6 +84,10 @@ public class Ball : MonoBehaviour
         if (_currentFinish == null && other.TryGetComponent(out Finish finish))
         {
             SetFinish(finish);
+        }
+        else if(_rigidbody.velocity.y < 20 &&  other.TryGetComponent(out Fan fan))
+        {
+            _rigidbody.AddForce(Vector3.up * fan.Force * Time.deltaTime, ForceMode.Impulse);
         }
     }
 
