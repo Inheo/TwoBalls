@@ -5,6 +5,7 @@ using UnityEngine;
 public class FallVFX : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _vfx;
+    [SerializeField] private LayerMask _groundLayer;
 
     private Rigidbody _rigidbody;
     private TrailRenderer _trailRenderer;
@@ -20,7 +21,7 @@ public class FallVFX : MonoBehaviour
 
     private void Update()
     {
-        if(_lostTime > _delay && _rigidbody.velocity.y < -20 && Physics.Linecast(transform.position, Vector3.down * 2f + transform.position))
+        if(_lostTime > _delay && _rigidbody.velocity.y < -20 && Physics.Linecast(transform.position, Vector3.down * 2f + transform.position, _groundLayer))
         {
             _vfx.Play();
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
