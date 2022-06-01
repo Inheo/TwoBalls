@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Mover))]
 [RequireComponent(typeof(Rigidbody))]
 public class Ball : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class Ball : MonoBehaviour
     [SerializeField] private ParticleSystem _deadVFXPrefab;
     [SerializeField] private Transform _rippleTransform;
 
-    private Mover _mover;
     private Rigidbody _rigidbody;
     private Finish _currentFinish;
 
@@ -25,22 +23,11 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         IsFinished = false;
-        _mover = GetComponent<Mover>();
         _rigidbody = GetComponent<Rigidbody>();
-
-        _mover.OnMoveStart += ResetFinish;
-        _mover.OnMoveStart += () => _trailRenderer.emitting = true;
 
         _trailRenderer.enabled = false;
 
         _startScale = _rippleTransform.localScale;
-    }
-
-    private void OnDestroy()
-    {
-        _mover.OnMoveStart -= ResetFinish;
-        _mover.OnMoveStart -= () => _trailRenderer.emitting = true;
-
     }
 
     private void LateUpdate()
@@ -87,7 +74,7 @@ public class Ball : MonoBehaviour
         }
         else if(_rigidbody.velocity.y < 20 && other.TryGetComponent(out Fan fan))
         {
-            _rigidbody.velocity = Vector3.up * 8;
+            _rigidbody.velocity = Vector3.up * fan.Force;
             // _rigidbody.AddForce(Vector3.up * fan.Force * Time.deltaTime, ForceMode.Impulse);
         }
     }
