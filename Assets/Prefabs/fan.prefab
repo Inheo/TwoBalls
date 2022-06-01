@@ -62,8 +62,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5518b69129544d44ac8a1a77a5a21bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 100
-  _enabledTime: 2
+  _force: 70
+  _enabledTime: 5
   _disabledTime: 1
   _fanParticle: {fileID: 5707141532181403750}
   _fanCollider: {fileID: 1085000817}
