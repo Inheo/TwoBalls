@@ -4,11 +4,17 @@ ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: -2915480110213353497
-    second: rotating_saw|CylinderAction
+      74: -4908602232750781840
+    second: rotating_saw|rotating_saw|rotating_saw|rotating_sawAction|rotating_saw|r
   - first:
       74: -3936472960979113318
     second: rotating_saw|rotating_saw|rotating_saw|rotating_sawAction|rotating_saw|rotat
+  - first:
+      74: -6135936108652683825
+    second: rotating_saw.001|rotating_saw|rotating_saw|rotating_sawAction|rotating_saw|r
+  - first:
+      74: -8753959080501525307
+    second: rotating_saw.001|rotating_saw|rotating_saw|rotating_sawAction|rotating_saw|rotat
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -41,7 +47,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 138
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -94,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1.38
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
