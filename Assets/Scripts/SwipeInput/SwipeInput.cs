@@ -7,7 +7,10 @@ public class SwipeInput : MonoBehaviour
 
     public event System.Action<int> OnSwipeHorizontal;
 
+    public int DirectionX { get; private set; }
+
     private Vector3 _startMousePosition;
+    private Vector3 _previousPosition;
 
     private void Start()
     {
@@ -23,17 +26,25 @@ public class SwipeInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _startMousePosition = Input.mousePosition;
+            _previousPosition = Input.mousePosition;
         }
 
-        if (Input.GetMouseButtonUp(0) && _swipePolicy.CanSwipe())
+        if (Input.GetMouseButton(0))
         {
-            float distanceX = Input.mousePosition.x - _startMousePosition.x;
+            float distanceX = Input.mousePosition.x - _previousPosition.x;
 
-            if (Mathf.Abs(distanceX) > 5)
+            if (Mathf.Abs(distanceX) > 3)
             {
-                int directionX = distanceX < 0 ? -1 : 1;
-                OnSwipeHorizontal?.Invoke(directionX);
+                DirectionX = distanceX < 0 ? -1 : 1;
+                OnSwipeHorizontal?.Invoke(DirectionX);
+                _previousPosition = Input.mousePosition;
             }
+
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            DirectionX = 0;
         }
     }
 }
