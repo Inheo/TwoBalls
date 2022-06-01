@@ -10,8 +10,6 @@ public class Mover : MonoBehaviour
     private SphereCollider _sphereCollider;
     private Rigidbody _rigidbody;
 
-    public event System.Action OnMoveStart;
-
     private void Awake()
     {
         _sphereCollider = GetComponent<SphereCollider>();
