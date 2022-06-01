@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Fan : MonoBehaviour
 {
+    [SerializeField] private bool _intermittently = true;
     [SerializeField] private float _force = 5;
     [SerializeField] private float _enabledTime = 2;
     [SerializeField] private float _disabledTime = 0.5f;
@@ -13,15 +14,23 @@ public class Fan : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(ActiveFan());
+        if (_intermittently == true)
+        {
+            StartCoroutine(ActiveFanIntermittently());
+        }
+        else
+        {
+            _fanParticle.Play();
+            _fanCollider.enabled = true;
+        }
     }
 
-    private IEnumerator ActiveFan()
+    private IEnumerator ActiveFanIntermittently()
     {
         WaitForSeconds enabledDelay = new WaitForSeconds(_enabledTime);
         WaitForSeconds disabledDelay = new WaitForSeconds(_disabledTime);
 
-        while(true)
+        while (true)
         {
             _fanParticle.Play();
             _fanCollider.enabled = true;
