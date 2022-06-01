@@ -85,9 +85,10 @@ public class Ball : MonoBehaviour
         {
             SetFinish(finish);
         }
-        else if(_rigidbody.velocity.y < 20 &&  other.TryGetComponent(out Fan fan))
+        else if(_rigidbody.velocity.y < 20 && other.TryGetComponent(out Fan fan))
         {
-            _rigidbody.AddForce(Vector3.up * fan.Force * Time.deltaTime, ForceMode.Impulse);
+            _rigidbody.velocity = Vector3.up * 8;
+            // _rigidbody.AddForce(Vector3.up * fan.Force * Time.deltaTime, ForceMode.Impulse);
         }
     }
 
