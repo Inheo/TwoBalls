@@ -54,7 +54,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 10
+  m_Constraints: 8
   m_CollisionDetection: 0
 --- !u!135 &8118610002148552287
 SphereCollider:
@@ -205,8 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948dd2dd53bca4256bfed0acffb5eb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _durationMove: 0.1
-  _moveStep: 2
+  _speed: 8
   _swipeInput: {fileID: 0}
   _platformLayer:
     serializedVersion: 2
