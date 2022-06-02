@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a483276e8d044bca93481d879e6b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotateEuler: {x: 0, y: 1, z: 0}
+  _rotateEuler: {x: 0, y: 0, z: 1}
   _speed: 5
 --- !u!1 &8621775033720529948
 GameObject:
