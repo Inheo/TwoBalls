@@ -6,6 +6,7 @@ public class FallVFX : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _vfx;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private AudioSource _audioSource;
 
     private Rigidbody _rigidbody;
     private TrailRenderer _trailRenderer;
@@ -25,6 +26,7 @@ public class FallVFX : MonoBehaviour
         {
             _vfx.Play();
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
+            _audioSource.Play();
             _lostTime = 0;
             _trailRenderer.emitting = false;
         }
