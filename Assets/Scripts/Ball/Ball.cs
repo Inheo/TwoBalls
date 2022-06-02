@@ -1,7 +1,7 @@
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Mover))]
 public class Ball : MonoBehaviour
 {
     [SerializeField] private float _snapDistance = 0.1f;
@@ -23,11 +23,36 @@ public class Ball : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
 
         _trailRenderer.enabled = false;
+
+        Subscribe();
+    }
+
+    private void OnDestroy()
+    {
+        Unsubscribe();
+    }
+
+    private void Subscribe()
+    {
+        Level.Instance.OnLevelComplete += CompletedLevel;
+    }
+
+    private void Unsubscribe()
+    {
+        Level.Instance.OnLevelComplete -= CompletedLevel;
+    }
+
+    private void CompletedLevel()
+    {
+        Vector3 to = transform.position;
+        to.x = _currentFinish.transform.position.x;
+
+        GetComponent<Mover>().MoveTo(0.3f, to);
     }
 
     private void LateUpdate()
     {
-        if (_currentFinish != null)
+        if (Level.Instance.IsLevelEnd == false && _currentFinish != null)
         {
             if (Vector3.Distance(transform.position, _currentFinish.transform.position) < _snapDistance)
             {
