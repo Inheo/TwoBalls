@@ -72,8 +72,7 @@ public class Ball : MonoBehaviour
         {
             SetFinish(finish);
         }
-
-        if (other.TryGetComponent(out FailPlatform fail))
+        else if (other.TryGetComponent(out FailPlatform fail))
         {
             OnFail?.Invoke();
             Instantiate(_deadVFXPrefab, transform.position, Quaternion.identity);
@@ -117,6 +116,9 @@ public class Ball : MonoBehaviour
 
     private void SetFinish(Finish finish)
     {
+        if(_currentFinish != null)
+            _currentFinish.IsBusy = false;
+            
         _currentFinish = finish;
         _currentFinish.IsBusy = true;
     }
