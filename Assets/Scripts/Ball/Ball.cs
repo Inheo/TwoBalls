@@ -12,10 +12,8 @@ public class Ball : MonoBehaviour
     private Rigidbody _rigidbody;
     private Finish _currentFinish;
 
-    private Vector3 _startScale;
-    private Coroutine _ripple;
-
     public event System.Action OnFinished;
+    public event System.Action OnExitFinish;
     public event System.Action OnFail;
 
     public bool IsFinished { get; private set; }
@@ -26,8 +24,6 @@ public class Ball : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
 
         _trailRenderer.enabled = false;
-
-        _startScale = _rippleTransform.localScale;
     }
 
     private void LateUpdate()
@@ -38,15 +34,10 @@ public class Ball : MonoBehaviour
             {
                 IsFinished = true;
                 OnFinished?.Invoke();
-                if(_ripple == null)
-                {
-                    _ripple = StartCoroutine(Ripple());
-                }
             }
-            else if(_ripple != null)
+            else if(IsFinished == true)
             {
-                StopCoroutine(_ripple);
-                _ripple = null;
+                OnExitFinish?.Invoke();
             }
         }
     }
@@ -68,14 +59,13 @@ public class Ball : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (_currentFinish == null && other.TryGetComponent(out Finish finish))
+        if (_currentFinish == null && other.TryGetComponent(out Finish finish) && finish.IsBusy == false)
         {
             SetFinish(finish);
         }
         else if(_rigidbody.velocity.y < 20 && other.TryGetComponent(out Fan fan))
         {
             _rigidbody.velocity = Vector3.up * fan.Force;
-            // _rigidbody.AddForce(Vector3.up * fan.Force * Time.deltaTime, ForceMode.Impulse);
         }
     }
 
@@ -95,49 +85,15 @@ public class Ball : MonoBehaviour
 
     private void ResetFinish()
     {
+        _currentFinish.IsBusy = false;
         _currentFinish = null;
         IsFinished = false;
-
-        if (_ripple != null)
-        {
-            StopCoroutine(_ripple);
-            _ripple = null;
-        }
-
-        _rippleTransform.localScale = _startScale;
+        OnExitFinish?.Invoke();
     }
 
     private void SetFinish(Finish finish)
     {
         _currentFinish = finish;
-
-        if(_ripple != null)
-            StopCoroutine(_ripple);
-
-        _ripple = StartCoroutine(Ripple());
-    }
-
-    private IEnumerator Ripple()
-    {
-        float duration = 0.4f;
-        float lostTime = 0;
-        Vector3 endScale = _startScale * 1.1f;
-
-        while (true)
-        {
-            while (lostTime < 1)
-            {
-                lostTime += Time.deltaTime / duration;
-                _rippleTransform.localScale = Vector3.Lerp(_startScale, endScale, lostTime);
-                yield return null;
-            }
-
-            while (lostTime > 0)
-            {
-                lostTime -= Time.deltaTime / duration;
-                _rippleTransform.localScale = Vector3.Lerp(_startScale, endScale, lostTime);
-                yield return null;
-            }
-        }
+        _currentFinish.IsBusy = true;
     }
 }
