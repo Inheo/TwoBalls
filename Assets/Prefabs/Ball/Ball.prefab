@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 6572299671811274817}
   - component: {fileID: 7871506990514740700}
   - component: {fileID: 816312192683681483}
+  - component: {fileID: 26439372065797411}
   m_Layer: 10
   m_Name: Renderer
   m_TagString: Untagged
@@ -325,6 +326,19 @@ MonoBehaviour:
   m_Mass: 1
   m_Stiffness: 1
   sleeping: 1
+--- !u!114 &26439372065797411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647260146720147274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a52ee362c3d143b781398c8982236a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ball: {fileID: 1290158997301597969}
 --- !u!1 &4155330202002841396
 GameObject:
   m_ObjectHideFlags: 0
