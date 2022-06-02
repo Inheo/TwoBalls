@@ -10,6 +10,8 @@ public class Mover : MonoBehaviour
     private SphereCollider _sphereCollider;
     private Rigidbody _rigidbody;
 
+    private Coroutine _moveInTime;
+
     private void Awake()
     {
         _sphereCollider = GetComponent<SphereCollider>();
@@ -32,5 +34,26 @@ public class Mover : MonoBehaviour
             velocity.x = 0;
             _rigidbody.velocity = velocity;
         }
+    }
+
+    private IEnumerator MoveInTime(float duration, Vector3 endPoint)
+    {
+        float lostTime = 0;
+        Vector3 startPoint = transform.position;
+
+        while (lostTime < 1)
+        {
+            lostTime += Time.deltaTime / duration;
+            transform.position = Vector3.Lerp(startPoint, endPoint, lostTime);
+            yield return null;
+        }
+    }
+
+    public void MoveTo(float duration, Vector3 endPoint)
+    {
+        if (_moveInTime != null)
+            StopCoroutine(_moveInTime);
+
+        _moveInTime = StartCoroutine(MoveInTime(duration, endPoint));
     }
 }
