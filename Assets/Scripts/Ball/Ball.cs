@@ -7,7 +7,6 @@ public class Ball : MonoBehaviour
     [SerializeField] private float _snapDistance = 0.1f;
     [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private ParticleSystem _deadVFXPrefab;
-    [SerializeField] private Transform _rippleTransform;
 
     private Rigidbody _rigidbody;
     private Finish _currentFinish;
