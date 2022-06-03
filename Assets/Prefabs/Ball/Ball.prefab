@@ -192,7 +192,6 @@ MonoBehaviour:
   _snapDistance: 0.5
   _trailRenderer: {fileID: 6602118009345910489}
   _deadVFXPrefab: {fileID: 4949576059811784980, guid: d758bda8276b3a44693a8bffd581138e, type: 3}
-  _rippleTransform: {fileID: 7145580875477499771}
 --- !u!114 &1290158997301597974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,7 +508,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4155330202002841396}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64944a04643744972b81bac66e602325, type: 3}
   m_Name: 
