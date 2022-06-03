@@ -994,7 +994,23 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 579668484, guid: 4fec8550866eb435ca321d291a6cfda3, type: 3}
+      propertyPath: _xSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 579668484, guid: 4fec8550866eb435ca321d291a6cfda3, type: 3}
+      propertyPath: _ySpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 579668484, guid: 4fec8550866eb435ca321d291a6cfda3, type: 3}
       propertyPath: _amplitude
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 579668484, guid: 4fec8550866eb435ca321d291a6cfda3, type: 3}
+      propertyPath: _xAmplitude
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 579668484, guid: 4fec8550866eb435ca321d291a6cfda3, type: 3}
+      propertyPath: _yAmplitude
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 794046422999171887, guid: 4fec8550866eb435ca321d291a6cfda3, type: 3}
@@ -1159,7 +1175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e694caf74014ea740a9622e4405c4642, type: 2}
+  - {fileID: 2100000, guid: 86b35799017ea4f4886c15f0b22008e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
