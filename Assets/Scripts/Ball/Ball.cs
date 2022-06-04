@@ -31,24 +31,6 @@ public class Ball : MonoBehaviour
         Unsubscribe();
     }
 
-    private void Subscribe()
-    {
-        Level.Instance.OnLevelComplete += CompletedLevel;
-    }
-
-    private void Unsubscribe()
-    {
-        Level.Instance.OnLevelComplete -= CompletedLevel;
-    }
-
-    private void CompletedLevel()
-    {
-        Vector3 to = transform.position;
-        to.x = _currentFinish.transform.position.x;
-
-        GetComponent<Mover>().MoveTo(0.3f, to);
-    }
-
     private void LateUpdate()
     {
         if (Level.Instance.IsLevelEnd == false && _currentFinish != null)
@@ -102,6 +84,24 @@ public class Ball : MonoBehaviour
     {
         if (_trailRenderer.enabled == false && other.collider.TryGetComponent(out Ball ball) == false)
             _trailRenderer.enabled = true;
+    }
+
+    private void Subscribe()
+    {
+        Level.Instance.OnLevelComplete += CompletedLevel;
+    }
+
+    private void Unsubscribe()
+    {
+        Level.Instance.OnLevelComplete -= CompletedLevel;
+    }
+
+    private void CompletedLevel()
+    {
+        Vector3 to = transform.position;
+        to.x = _currentFinish.transform.position.x;
+
+        GetComponent<Mover>().MoveTo(0.3f, to);
     }
 
     private void ResetFinish()
