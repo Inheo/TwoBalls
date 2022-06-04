@@ -3,7 +3,6 @@ using UnityEngine;
 public class FallEmitter : AbstracFallEmitter
 {
     [SerializeField] private LayerMask _platformLayer;
-    [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private Rigidbody _rigidbody;
 
     private readonly float _delay = 0.3f;
@@ -16,7 +15,6 @@ public class FallEmitter : AbstracFallEmitter
         if(IsFalled() == true)
         {
             _lostTime = 0;
-            _trailRenderer.emitting = false;
 
             OnFalled?.Invoke();  
         }
