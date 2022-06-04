@@ -12,6 +12,8 @@ public class Mover : MonoBehaviour
 
     private Coroutine _moveInTime;
 
+    public event System.Action OnMoved;
+
     private void Awake()
     {
         _sphereCollider = GetComponent<SphereCollider>();
@@ -27,6 +29,9 @@ public class Mover : MonoBehaviour
             Vector3 endPoint = transform.position + Vector3.right * _swipeInput.DirectionX;
 
             transform.position = Vector3.Lerp(transform.position, endPoint, _speed * Time.deltaTime);
+
+            if(_swipeInput.DirectionX != 0)
+                OnMoved?.Invoke();
         }
         else
         {
