@@ -9,7 +9,7 @@ public class DeadVFXHandler : MonoBehaviour
 
     private void Awake()
     {
-        _ball.GetComponent<Ball>();
+        _ball = GetComponent<Ball>();
     }
 
     private void Start()
