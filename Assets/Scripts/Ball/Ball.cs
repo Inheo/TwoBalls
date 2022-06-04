@@ -5,7 +5,6 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField] private float _snapDistance = 0.1f;
-    [SerializeField] private TrailRenderer _trailRenderer;
 
     private Rigidbody _rigidbody;
     private Finish _currentFinish;
@@ -20,8 +19,6 @@ public class Ball : MonoBehaviour
     {
         IsFinished = false;
         _rigidbody = GetComponent<Rigidbody>();
-
-        _trailRenderer.enabled = false;
 
         Subscribe();
     }
@@ -78,12 +75,6 @@ public class Ball : MonoBehaviour
         {
             ResetFinish();
         }
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (_trailRenderer.enabled == false && other.collider.TryGetComponent(out Ball ball) == false)
-            _trailRenderer.enabled = true;
     }
 
     private void Subscribe()
