@@ -1,8 +1,6 @@
 using System.Linq;
 using UnityEngine;
 using Scripts.Data;
-using MoreMountains.NiceVibrations;
-using System.Collections;
 
 public class Level : MonoBehaviour
 {
@@ -29,7 +27,7 @@ public class Level : MonoBehaviour
 
     private void OnDestroy()
     {
-        MMVibrationManager.StopAllHaptics();
+        Extentions.StopAllVibraions();
         Unsubscribe();
     }
 
@@ -62,7 +60,7 @@ public class Level : MonoBehaviour
             IsLevelEnd = true;
             _vfxPlayer.Play();
             PlayerProgress.GetData().CompleteLevel();
-            PlayWinVibration(7);
+            Extentions.PlayWinVibration(7, this);
 
             OnLevelComplete?.Invoke();
         }
@@ -74,21 +72,5 @@ public class Level : MonoBehaviour
 
         IsLevelEnd = true;
         OnLevelFail?.Invoke();
-    }
-
-    private void PlayWinVibration(int countSteps)
-    {
-        StartCoroutine(PlayVibration(countSteps));
-    }
-
-    private IEnumerator PlayVibration(int countSteps)
-    {
-        WaitForSeconds delay = new WaitForSeconds(0.15f);
-
-        for (int i = 0; i < countSteps; i++)
-        {
-            MMVibrationManager.Haptic(HapticTypes.MediumImpact);
-            yield return delay;
-        }
     }
 }
