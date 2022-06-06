@@ -593,11 +593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2094604760530880537, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.g
-      value: 0.3764706
+      value: 0.45490196
       objectReference: {fileID: 0}
     - target: {fileID: 2094604760530880537, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.r
-      value: 0.58431375
+      value: 0.6392157
       objectReference: {fileID: 0}
     - target: {fileID: 2533729877636974193, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -609,11 +609,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2533729877636974204, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.g
-      value: 0.3764706
+      value: 0.45490196
       objectReference: {fileID: 0}
     - target: {fileID: 2533729877636974204, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.r
-      value: 0.58431375
+      value: 0.6392157
       objectReference: {fileID: 0}
     - target: {fileID: 4005537472905872883, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: _swipeInput
@@ -625,11 +625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5117794214080870423, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.g
-      value: 0.3764706
+      value: 0.45490196
       objectReference: {fileID: 0}
     - target: {fileID: 5117794214080870423, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.r
-      value: 0.58431375
+      value: 0.6392157
       objectReference: {fileID: 0}
     - target: {fileID: 5353009520130747280, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -641,11 +641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5353009520130747293, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.g
-      value: 0.3764706
+      value: 0.45490196
       objectReference: {fileID: 0}
     - target: {fileID: 5353009520130747293, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.r
-      value: 0.58431375
+      value: 0.6392157
       objectReference: {fileID: 0}
     - target: {fileID: 5754840179260074348, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: _swipeInput
@@ -705,11 +705,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7186812501422391490, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.g
-      value: 0.3764706
+      value: 0.45490196
       objectReference: {fileID: 0}
     - target: {fileID: 7186812501422391490, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: color.r
-      value: 0.58431375
+      value: 0.6392157
       objectReference: {fileID: 0}
     - target: {fileID: 7186812501422391503, guid: 3079d589b8b184e6ab54d6c9b911c93a, type: 3}
       propertyPath: m_Materials.Array.data[0]
