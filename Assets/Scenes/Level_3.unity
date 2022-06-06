@@ -453,6 +453,18 @@ PrefabInstance:
       propertyPath: _vfxPlayer
       value: 
       objectReference: {fileID: 786835633}
+    - target: {fileID: 1695275876594352986, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695275876594352986, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.g
+      value: 0.45490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695275876594352986, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.r
+      value: 0.6392157
+      objectReference: {fileID: 0}
     - target: {fileID: 1736253161753676739, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
       propertyPath: _snapDistance
       value: 0.1
@@ -517,6 +529,30 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e250b3f3278e7b849acda4ce1756905d, type: 2}
+    - target: {fileID: 7413386174706782044, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7413386174706782044, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.g
+      value: 0.45490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 7413386174706782044, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.r
+      value: 0.6392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719599288093466884, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719599288093466884, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.g
+      value: 0.45490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719599288093466884, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
+      propertyPath: color.r
+      value: 0.6392157
+      objectReference: {fileID: 0}
     - target: {fileID: 8843562441376752594, guid: 2f1f686e40314404fb52be1ff1e5617f, type: 3}
       propertyPath: m_RootOrder
       value: 5
