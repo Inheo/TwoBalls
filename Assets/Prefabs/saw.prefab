@@ -311,8 +311,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81204258e836a4e6e8c60581790d453b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _amplitude: 1
+  _ySpeed: 1
+  _xSpeed: 1
+  _yAmplitude: 1
+  _xAmplitude: 1
 --- !u!114 &579668485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateEuler: {x: 0, y: 0, z: 1}
-  _speed: 5
+  _speed: 200
 --- !u!114 &2861685047978353463
 MonoBehaviour:
   m_ObjectHideFlags: 0
