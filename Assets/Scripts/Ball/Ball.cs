@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField] private float _snapDistance = 0.1f;
+    [SerializeField] private ParticleSystem _winVFXPrefab;
 
     private Rigidbody _rigidbody;
     private Finish _currentFinish;
@@ -93,6 +94,7 @@ public class Ball : MonoBehaviour
         to.x = _currentFinish.transform.position.x;
 
         GetComponent<Mover>().MoveTo(0.3f, to);
+        Instantiate(_winVFXPrefab, transform).Play();
     }
 
     private void ResetFinish()

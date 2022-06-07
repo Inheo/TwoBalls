@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _snapDistance: 0.5
+  _winVFXPrefab: {fileID: 1904118480906544807, guid: 84986ca96e3764e83af77cfc6c169a4c, type: 3}
 --- !u!114 &1290158997301597974
 MonoBehaviour:
   m_ObjectHideFlags: 0
