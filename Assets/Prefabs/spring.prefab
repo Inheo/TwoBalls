@@ -359,3 +359,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _force: 50
+  _jumpParticlePrefab: {fileID: 1904118480906544807, guid: 84986ca96e3764e83af77cfc6c169a4c, type: 3}
