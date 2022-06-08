@@ -1,0 +1,6 @@
+Hex Codes
+
+#0B85FF - Blue
+#55DF00 - Bright Green
+#FFBF0B - Yellow
+#919191 - Grey

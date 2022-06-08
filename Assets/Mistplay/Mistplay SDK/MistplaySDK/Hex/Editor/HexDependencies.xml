@@ -1,0 +1,5 @@
+<dependencies>
+  <androidPackages>
+    <androidPackage spec="com.mistplay:hex:0.0.10" />
+  </androidPackages>
+</dependencies>
