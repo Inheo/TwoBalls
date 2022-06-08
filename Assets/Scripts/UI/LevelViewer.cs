@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using Scripts.Data;
 
 public class LevelViewer : MonoBehaviour
 {
@@ -15,8 +14,8 @@ public class LevelViewer : MonoBehaviour
         _game.OnStartLevel += UpdateUI;
     }
     
-    private void UpdateUI()
+    private void UpdateUI(int level)
     {
-        _levelText.text = LEVEL_PARAMETER + (PlayerProgress.GetData().Level + 1);
+        _levelText.text = LEVEL_PARAMETER + (level + 1);
     }
 }

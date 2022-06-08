@@ -9,7 +9,9 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private SceneLoader _sceneLoader;
 
-    public event System.Action OnStartLevel;
+    public event System.Action<int> OnStartLevel;
+    public event System.Action<int> OnFinishLevel;
+    public event System.Action<int> OnFailLevel;
 
     private void Awake()
     {
@@ -28,7 +30,7 @@ public class Game : MonoBehaviour, IStartCoroutine
 
     private void StartLevel()
     {
-        OnStartLevel?.Invoke();
+        OnStartLevel?.Invoke(PlayerProgress.GetData().Level);
         _winPanel.Hide(true);
         _failPanel.Hide(true);
 
@@ -58,11 +60,13 @@ public class Game : MonoBehaviour, IStartCoroutine
     private void ShowWinPanel()
     {
         _winPanel.Show();
+        OnFinishLevel?.Invoke(PlayerProgress.GetData().Level);
     }
 
     private void ShowFailPanel()
     {
         _failPanel.Show();
+        OnFailLevel?.Invoke(PlayerProgress.GetData().Level);
     }
 
     public void RestartGame()
