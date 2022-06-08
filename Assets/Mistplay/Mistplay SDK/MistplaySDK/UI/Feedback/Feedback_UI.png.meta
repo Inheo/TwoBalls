@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 85f837a3952fd4c49bd9844e42eb023a
+guid: 272835c4e5742b141ae396819ab06c07
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -116,13 +116,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Review_UI_0
+      name: Feedback_UI_0
       rect:
         serializedVersion: 2
-        x: 168
-        y: 1591
-        width: 170
-        height: 164
+        x: 78
+        y: 510
+        width: 969
+        height: 1294
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aae25bc04bcf7774588bd138bae65041
+      internalID: -1924786700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Feedback_UI_1
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 210
+        width: 544
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 272, y: 49, z: 272, w: 49}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51775d709877f844885a72d4b2b2f24d
+      internalID: 25190363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Feedback_UI_2
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 1988
+        width: 255
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,113 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 617ccc925afbfb84bae9e118bf4669ef
-      internalID: 481494975
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Review_UI_1
-      rect:
-        serializedVersion: 2
-        x: 433
-        y: 1617
-        width: 140
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ab6b0da76ef22e4aab89dc545d51213
-      internalID: -964919135
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Review_UI_2
-      rect:
-        serializedVersion: 2
-        x: 724
-        y: 86
-        width: 1212
-        height: 1717
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b4abbbd699574b44bcd27e48f275281
-      internalID: -1877872034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Review_UI_3
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 1311
-        width: 453
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26afbaecf26142d41a54ff6ef448173e
-      internalID: 1994516607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Review_UI_4
-      rect:
-        serializedVersion: 2
-        x: 157
-        y: 1149
-        width: 453
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1959f85a795bb334c9210c985d0c505b
-      internalID: 273495315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Review_UI_5
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 799
-        width: 287
-        height: 260
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 68, y: 68, z: 68, w: 68}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4088efe8498083b43a5e1094ea57680e
-      internalID: -1803892855
+      spriteID: ec28a5a8d8436ef4da34af52a3e4541d
+      internalID: -1485306544
       vertices: []
       indices: 
       edges: []
@@ -252,12 +189,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Review_UI_3: 1994516607
-      Review_UI_5: -1803892855
-      Review_UI_4: 273495315
-      Review_UI_0: 481494975
-      Review_UI_2: -1877872034
-      Review_UI_1: -964919135
+      Feedback_UI_2: -1485306544
+      Feedback_UI_1: 25190363
+      Feedback_UI_0: -1924786700
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

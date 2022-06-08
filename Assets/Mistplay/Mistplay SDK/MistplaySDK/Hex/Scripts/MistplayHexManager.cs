@@ -6,21 +6,28 @@ using com.mistplay.hex;
 
 namespace MistplaySDK
 {
-    public class MistplayHexManager : MonoBehaviour
+    public class MistplayHexManager : Singleton<MistplayHexManager>
     {
         [SerializeField] OverlaySide overlaySide;
         [SerializeField] int overlayPadding = 80;
+        [SerializeField] bool initializeByDefault = false;
 
-        void Awake()
+        protected override void OnAwake()
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
+            if(initializeByDefault)
+                Initialize();
+        }
+
+        public void Initialize()
+        {
+            #if UNITY_ANDROID && !UNITY_EDITOR
             Hex.SetOverlaySide(overlaySide);
             Hex.SetOverlayTopPadding(overlayPadding);
             Hex.SubscribeToEvents(eventName => MistplayAnalyticsManager.GenericProgression("Hex", eventName));
 
             _ = Hex.Launch();
             DontDestroyOnLoad(this);
-#endif
+            #endif
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace MistplaySDK
 {
     [DefaultExecutionOrder(-1000)]
-    public class MistplaySessionManager : MonoBehaviour
+    public class MistplaySessionManager : Singleton<MistplaySessionManager>
     {
         #region Types
         public delegate bool Event(Context context);
@@ -35,19 +35,6 @@ namespace MistplaySDK
         const float EvaluationDelay = 5; // Delay in seconds between evaluating each event, might have to reduce it if you have a lot
 
         HashSet<Event> events;
-        public static MistplaySessionManager Instance { get; private set; }
-
-        void Awake()
-        {
-            if(Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
 
         void Start()
         {
@@ -68,12 +55,12 @@ namespace MistplaySDK
 
             while(true)
             {
+                if(events != null)
                 foreach(var e in events)
                 {
                     ctx.SessionDuration = Time.realtimeSinceStartup;
 
-                    if(e(ctx))
-                        toRemove.Add(e);
+                    if(e(ctx)) toRemove.Add(e);
 
                     yield return new WaitForSeconds(EvaluationDelay);
                 }
@@ -122,6 +109,9 @@ namespace MistplaySDK
                 previousSessionsDuration = PlayerPrefs.GetFloat(LifetimeDurationKey);
 
             PlayerPrefs.Save();
+
+            Log("Session Count : " + sessionCount);
+            Log("Day Count : " + dayCount);
         }
 
         void SaveSessionTime()
@@ -131,7 +121,7 @@ namespace MistplaySDK
         }
 
         float LifetimeDuration => previousSessionsDuration + Time.realtimeSinceStartup;
-        int EpochDay => (new System.DateTime() - new System.DateTime(2022, 0, 0)).Days;
+        int EpochDay => (System.DateTime.Now - new System.DateTime(2022, 5, 15)).Days;
 
         public void AddEvent(Event callback)
         {

@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 896853564}
   m_Direction: 2
   m_Value: 1.0000002
-  m_Size: 0.72222227
+  m_Size: 0.7222222
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1952,6 +1952,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 617001053363316745, guid: 1b9ccaaeeb3644bc6bdb3cb5322c44df,
+        type: 3}
+      propertyPath: tests.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 617001053363316745, guid: 1b9ccaaeeb3644bc6bdb3cb5322c44df,
+        type: 3}
+      propertyPath: tests.Array.data[0].Variations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3833176995797690484, guid: 1b9ccaaeeb3644bc6bdb3cb5322c44df,
         type: 3}
       propertyPath: m_Name
@@ -2112,14 +2122,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1223141552, guid: 8b3e25238f6093c4aa42abe978ff36f4, type: 3}
-      propertyPath: devKey
-      value: 6CEaJCaw4HkAQEG6vkAL5R
-      objectReference: {fileID: 0}
-    - target: {fileID: 1223141552, guid: 8b3e25238f6093c4aa42abe978ff36f4, type: 3}
-      propertyPath: isDebug
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4003311042725151912, guid: 8b3e25238f6093c4aa42abe978ff36f4,
         type: 3}
       propertyPath: m_RootOrder
@@ -3462,6 +3464,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451981828014192294, guid: 26e9ea5729468a04bbb0b101008d3f00,
+        type: 3}
+      propertyPath: startShowingDay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451981828014192294, guid: 26e9ea5729468a04bbb0b101008d3f00,
+        type: 3}
+      propertyPath: showsAfterNSeconds
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26e9ea5729468a04bbb0b101008d3f00, type: 3}

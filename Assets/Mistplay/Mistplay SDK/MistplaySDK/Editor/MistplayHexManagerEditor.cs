@@ -15,10 +15,13 @@ public class MistplayHexManagerEditor : Editor
     {
         icon = Resources.Load("Icon_Hex") as Texture;
 
-        settingsCategory = new Layout.Category("Hex Settings", icon, 
-        "developerKey",
-        "overlaySide",
-        "overlayPadding");
+        settingsCategory = new Layout.Category(
+            "Hex Settings", icon,
+            "overlaySide",
+            "overlayPadding",
+            "initializeByDefault",
+            "dontDestroyOnLoad"
+        );
 
         settingsCategory.color = mainColor;
     }

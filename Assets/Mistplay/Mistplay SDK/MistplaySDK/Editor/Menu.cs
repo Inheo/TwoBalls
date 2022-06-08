@@ -18,9 +18,6 @@ namespace MistplaySDK
         [MenuItem("Mistplay/Create Reviews Manager", false, 600)]
         static void AddReviews() => AddManager<MistplayReviewsManager>("Reviews");
 
-        // [MenuItem("Mistplay/Create Session Manager", false, 700)]
-        // static void AddSession() => AddManager<MistplaySessionManager>("Session");
-
         [MenuItem("Mistplay/Create All Managers", false, 0)]
         static void AddEverything()
         {
@@ -28,7 +25,6 @@ namespace MistplaySDK
             AddAdvertising();
             AddHex();
             AddReviews();
-            //AddSession();
         }
         
         static void AddManager<T>(string name)

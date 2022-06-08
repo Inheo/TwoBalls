@@ -1,6 +1,6 @@
 ﻿namespace MistplaySDK
 {
-#if mistplay_gameanalytics_enabled
+    #if mistplay_gameanalytics_enabled
 
     using UnityEngine;
     using GameAnalyticsSDK;
@@ -11,7 +11,7 @@
     {
         public static event Action OnRemoteConfigsReady, OnRemoteConfigsUpdated;
         bool readyCallback;
-
+    
         void Awake()
         {
             if (Application.platform == RuntimePlatform.IPhonePlayer)
@@ -28,7 +28,7 @@
 
             StartCoroutine(WaitForReady());
         }
-
+        
         void OnDestroy()
         {
             GameAnalytics.OnRemoteConfigsUpdatedEvent -= RemoteConfigUpdated;
@@ -36,14 +36,14 @@
 
         IEnumerator WaitForReady()
         {
-            while (!(readyCallback && GameAnalytics.IsRemoteConfigsReady()))
+            while(!readyCallback || GameAnalytics.GetRemoteConfigsContentAsString().Length < 3)
                 yield return null;
-
+                
             readyCallback = false;
             OnRemoteConfigsReady?.Invoke();
         }
 
-        void RemoteConfigUpdated()
+        void RemoteConfigUpdated() 
         {
             OnRemoteConfigsUpdated?.Invoke();
         }
@@ -78,33 +78,38 @@
         {
             GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, level.ToString());
         }
-
-        public static void FinishLevel(int level, int completion)
+        
+        public static void FinishLevel(int level, int completion = int.MinValue)
         {
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, level.ToString(), completion);
+            if(completion != int.MinValue)
+            {
+                GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, level.ToString(), completion);
+            }
+            else 
+            {
+                GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, level.ToString());
+            }
         }
 
-        public static void FinishLevel(int level)
+        public static void FailLevel(int level, int completion = int.MinValue)
         {
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, level.ToString());
-        }
-
-        public static void FailLevel(int level, int completion)
-        {
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, level.ToString(), completion);
-        }
-        public static void FailLevel(int level)
-        {
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, level.ToString());
+            if(completion != int.MinValue)
+            {
+                GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, level.ToString(), completion);
+            }
+            else
+            {
+                GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, level.ToString());
+            }
         }
 
         public static void GenericProgression(string p0, string p1 = null, string p2 = null)
         {
             GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, p0, p1, p2);
         }
-
+        
         public static void CustomTrackingEvent(string id, float value) => GameAnalytics.NewDesignEvent(id, value);
     }
 
-#endif
+    #endif
 }

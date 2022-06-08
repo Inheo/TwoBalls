@@ -8,9 +8,10 @@ namespace MistplaySDK
         [SerializeField] int showsEveryNDays = 2;
         [SerializeField] float showsAfterNSeconds = 120;
 
-        void Awake()
+        void Start()
         {
-            MistplaySessionManager.Instance.AddEvent(ShowPrompt);
+            if(!PlayerPrefs.HasKey(MistplayReviewsManager.ReviewedKey))
+                MistplaySessionManager.Instance.AddEvent(ShowPrompt);
         }
 
         bool ShowPrompt(MistplaySessionManager.Context context)

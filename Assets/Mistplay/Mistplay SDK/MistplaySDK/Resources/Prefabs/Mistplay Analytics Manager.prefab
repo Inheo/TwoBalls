@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3833176995798053972}
   - component: {fileID: 3833176995786923926}
   - component: {fileID: 3833176995786923924}
+  - component: {fileID: 5711461374826329361}
+  - component: {fileID: 617001053363316745}
   - component: {fileID: 3036309335185572945}
   m_Layer: 0
   m_Name: Mistplay Analytics Manager
@@ -58,6 +60,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1488bee7925fe433fbddf989c50ad4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5711461374826329361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833176995797690484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fa4e1cd3f08c74bac3690ce7e96b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &617001053363316745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3833176995797690484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e68395a94bb2e440914c9abfad6ef5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tests: []
 --- !u!114 &3036309335185572945
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,30 +7,19 @@ using Unity.Advertisement.IosSupport;
 
 namespace MistplaySDK
 {
-    public class MistplayPrivacyManager : MonoBehaviour
+    public class MistplayPrivacyManager : Singleton<MistplayPrivacyManager>
     {
         [System.Serializable] public struct PartnerPrivacyPolicy { public string partner, link; }
 
         [SerializeField] PartnerPrivacyPolicy[] partnerPolicies;
-
-        public static MistplayPrivacyManager Instance { get; private set; }
 
         const string advertisingTrackingKey = "AdvertisingTracking";
         const string analyticsTrackingKey = "AnalyticsTracking";
 
         MistplayPrivacyUI ui;
 
-        void Awake()
+        protected override void OnAwake()
         {
-            if(Instance != null)
-            {
-                Destroy(this.gameObject);
-                return;
-            }
-
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-
             ui = GetComponentInChildren<MistplayPrivacyUI>(true);
             ui.Initialize(partnerPolicies);
 
@@ -139,6 +128,11 @@ namespace MistplaySDK
         public void OpenMistplayPolicy()
         {
             Application.OpenURL("https://www.mistplay.com/mobile-games/privacy-policy");
+        }
+
+        public void OpenMailToSupport()
+        {
+            Application.OpenURL("mailto:suppport@mistplay.com?subject=Mistplay Studios GDPR");
         }
     }
 }

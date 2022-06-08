@@ -156,10 +156,10 @@ RectTransform:
   m_Father: {fileID: 1818203708425206139}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 90}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 268.02997, y: -67.5}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1818203707798649274
 CanvasRenderer:
@@ -292,10 +292,10 @@ RectTransform:
   m_Father: {fileID: 1818203708425206139}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 90}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 482.06995, y: -67.5}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1818203708151552190
 CanvasRenderer:
@@ -475,10 +475,10 @@ RectTransform:
   m_Father: {fileID: 1818203708425206139}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 90}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 161.01, y: -67.5}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1818203708236799400
 CanvasRenderer:
@@ -775,7 +775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1818203708664269838}
   - component: {fileID: 1818203708664269837}
-  - component: {fileID: 5954227696092044868}
+  - component: {fileID: 2451981828014192294}
   m_Layer: 0
   m_Name: Mistplay Reviews Manager
   m_TagString: Untagged
@@ -796,6 +796,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1818203708880055841}
+  - {fileID: 7693760301121192164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -811,15 +812,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449edac80568e7c48a2ba8f529cb8e28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   MinimumRating: 4
---- !u!114 &5954227696092044868
+--- !u!114 &2451981828014192294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818203708664269836}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0df24c007e5a83c4493e5806289000fd, type: 3}
   m_Name: 
@@ -1028,7 +1030,7 @@ MonoBehaviour:
   starsSprite: {fileID: -964919135, guid: 85f837a3952fd4c49bd9844e42eb023a, type: 3}
   starsSelectedSprite: {fileID: 481494975, guid: 85f837a3952fd4c49bd9844e42eb023a,
     type: 3}
-  starsFaded: {r: 0.9137255, g: 0.9137255, b: 0.9137255, a: 1}
+  starsFaded: {r: 0.608, g: 0.608, b: 0.608, a: 1}
   starsSelected: {r: 1, g: 1, b: 1, a: 1}
 --- !u!225 &8899677238800085118
 CanvasGroup:
@@ -1157,10 +1159,10 @@ RectTransform:
   m_Father: {fileID: 1818203708425206139}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 90}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 589.08997, y: -67.5}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1818203708991744846
 CanvasRenderer:
@@ -1293,10 +1295,10 @@ RectTransform:
   m_Father: {fileID: 1818203708425206139}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 90}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 375.05, y: -67.5}
+  m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1818203709269320363
 CanvasRenderer:
@@ -1554,3 +1556,78 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Please rate your experience so far.
+--- !u!1001 &7990057116110246706
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1818203708664269838}
+    m_Modifications:
+    - target: {fileID: 299446108449510344, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_Name
+      value: Mistplay Feedback Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e7980833754a8fc438d32e83a988afb8, type: 3}
+--- !u!4 &7693760301121192164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 299446108449510358, guid: e7980833754a8fc438d32e83a988afb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 7990057116110246706}
+  m_PrefabAsset: {fileID: 0}

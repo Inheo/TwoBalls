@@ -14,9 +14,9 @@ namespace MistplaySDK
 {
 
 #if mistplay_appsflyer_enabled
-    public class MistplayAdvertisingManager : MonoBehaviour, IAppsFlyerConversionData
+    public class MistplayAdvertisingManager : Singleton<MistplayAdvertisingManager>, IAppsFlyerConversionData
 #else
-    public class MistplayAdvertisingManager : MonoBehaviour
+    public class MistplayAdvertisingManager : Singleton<MistplayAdvertisingManager>
 #endif
     {
 
@@ -32,10 +32,6 @@ namespace MistplaySDK
         public delegate void RewardedVideoEventLoadedDelegate();
         public static event RewardedVideoEventLoadedDelegate RewardedVideoLoaded;
 
-        private static MistplayAdvertisingManager _instance;
-        public static MistplayAdvertisingManager Instance { get { return _instance; } }
-
-
         public string RewardedVideoAdUnitAndroid;
         public string InterstitialAdUnitAndroid;
         public string BannerAdUnitAndroid;
@@ -47,6 +43,8 @@ namespace MistplaySDK
         public string BannerAdUnitIOS;
 
         public string AdMobIosAppID;
+
+        [SerializeField] bool initializeByDefault = false;
 
         [Tooltip("Based on Mistplay's recommendations, we may or may not want to show banner ads in the game")]
         public bool ShouldShowBannerAds = true;
@@ -77,6 +75,8 @@ namespace MistplaySDK
             Other
         }
 
+        public class AdsInitialized { public bool Banner, Interstitial, Rewarded; }
+
 /*
         public bool InterstitialAdIsReady
         {
@@ -105,28 +105,11 @@ namespace MistplaySDK
         private const string MinTimeBetweenInterstitialAdsABTestKey = "minAdsTime";
         private const string BannerAdsABTestKey = "Banner_Ads";
 
-        private void Awake()
-        {
+        public AdsInitialized InitializedAds { get; private set; }
 
-
-            if (_instance != null && _instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                _instance = this;
-            }
-
-            DontDestroyOnLoad(this);
-
-        }
-
-        // Start is called before the first frame update
         void Start()
         {
-
-
+            InitializedAds = new AdsInitialized();
             SetupInitialRewards();
 
             MaxSdkCallbacks.OnSdkInitializedEvent += (MaxSdkBase.SdkConfiguration sdkConfiguration) => {
@@ -152,13 +135,11 @@ namespace MistplaySDK
                 MaxSdkCallbacks.Banner.OnAdRevenuePaidEvent += OnAdRevenuePaidEvent;
                 MaxSdkCallbacks.MRec.OnAdRevenuePaidEvent += OnAdRevenuePaidEvent;
 
-                // 2. Load ads
-                InitializeInterstitialAds();
+                // 2. Load ads 
                 InitializeRewardedAds();
-                if (ShouldShowBannerAds)
-                {
-                    InitializeBannerAds();
-                }
+
+                if(initializeByDefault)
+                    InitializeAds();
 
                 if (ShouldShowDebugger)
                 {
@@ -173,6 +154,13 @@ namespace MistplaySDK
             MaxSdk.SetSdkKey("O3fEsTvR-mIZptRTnPSobUSQ0Usahf6fKg7CgHWrl5T4uZH4xFPUTur_J9RWWT_T9fIIBC8d4TTnHZ3pFVGUWV");
           //  MaxSdk.SetUserId(PlayerID.ID);
             MaxSdk.InitializeSdk();
+        }   
+
+        public void InitializeAds()
+        {
+            InitializeInterstitialAds();
+            if (ShouldShowBannerAds)
+                InitializeBannerAds();
         }
 
         private void SetupInitialRewards()
@@ -203,7 +191,8 @@ namespace MistplaySDK
 
         public void ShowInterstitialAd()
         {
-
+            if(!InitializedAds.Interstitial) return;
+            
             //  if (MaxSdk.IsInterstitialReady(interstitialAdUnit) && ShouldShowInterstitialAd)
             // removed any timer dependency
             if (MaxSdk.IsInterstitialReady(interstitialAdUnit))
@@ -293,6 +282,7 @@ namespace MistplaySDK
             if(InterstitialAdUnitAndroid != null)
             {
                 interstitialAdUnit = InterstitialAdUnitAndroid;
+                InitializedAds.Interstitial = true;
             }
             else
             {
@@ -302,6 +292,7 @@ namespace MistplaySDK
            if(InterstitialAdUnitIOS != null)
             {
                 interstitialAdUnit = InterstitialAdUnitIOS;
+                InitializedAds.Interstitial = true;
             }
             else
             {
@@ -314,21 +305,16 @@ Debug.Log("Not Running on iOS or Android so no ad network will be instantiated a
             if(interstitialAdUnit!=null && !interstitialAdUnit.Equals(""))
             {
                 MaxSdk.LoadInterstitial(interstitialAdUnit);
+                InitializedAds.Interstitial = true;
             }
             else
             {
                 Debug.LogWarning("No Interstitial Ad Unit entered. Interstitial ads will not launch.");
             }
-
-            
-
         }
-
-
         #endregion
 
         #region Rewarded Video Ads
-        private bool rewardedAdsInitialized;
         public void InitializeRewardedAds()
         {
             // Attach callback
@@ -372,7 +358,7 @@ Debug.Log("Not Running on iOS or Android so no ad network will be instantiated a
             {
                 MaxSdk.LoadRewardedAd(rewardedVideoAdUnit);
 
-                rewardedAdsInitialized = true;
+                InitializedAds.Rewarded = true;
             }
             else
             {
@@ -383,7 +369,7 @@ Debug.Log("Not Running on iOS or Android so no ad network will be instantiated a
 
         public bool IsRewardedVideoAdReady()
         {
-            if (MaxSdk.IsInitialized() && rewardedAdsInitialized)
+            if (MaxSdk.IsInitialized() && InitializedAds.Rewarded)
             {
                 return MaxSdk.IsRewardedAdReady(rewardedVideoAdUnit);
             }
@@ -398,7 +384,7 @@ Debug.Log("Not Running on iOS or Android so no ad network will be instantiated a
 
         public void ShowRewardedVideoAd(RewardedVideoAdType type)
         {
-            if (MaxSdk.IsRewardedAdReady(rewardedVideoAdUnit))
+            if(InitializedAds.Rewarded && MaxSdk.IsRewardedAdReady(rewardedVideoAdUnit))
             {
                 MaxSdk.ShowRewardedAd(rewardedVideoAdUnit);
                 rewards[type] = true;
@@ -481,11 +467,11 @@ Debug.Log("Not Running on iOS or Android so no ad network will be instantiated a
 
         public void InitializeBannerAds()
         {
-
 #if UNITY_ANDROID
             if (BannerAdUnitAndroid != null)
             {
                 bannerAdUnit = BannerAdUnitAndroid;
+                InitializedAds.Banner = true;
             }
             else
             {
@@ -495,6 +481,7 @@ Debug.Log("Not Running on iOS or Android so no ad network will be instantiated a
            if(BannerAdUnitIOS != null)
             {
                 bannerAdUnit = BannerAdUnitIOS;
+                InitializedAds.Banner = true;
             }
             else
             {
@@ -514,6 +501,7 @@ Debug.Log("Not Running on iOS or Android so no ad network will be instantiated a
                 MaxSdk.SetBannerBackgroundColor(bannerAdUnit, Color.white);
 
                 MaxSdk.ShowBanner(bannerAdUnit);
+                InitializedAds.Banner = true;
             }
             else
             {

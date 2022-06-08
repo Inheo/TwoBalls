@@ -38,8 +38,8 @@ public class MistplayAdvertisingManagerEditor : Editor
             "BannerAdUnitIOS", 
             "AdMobIosAppID"),
             
-            new Layout.Category("Banner Ads", iconBanner, "ShouldShowBannerAds"),
-            new Layout.Category("Debugger", iconBug, "ShouldShowDebugger"),
+            new Layout.Category("Ads", iconBanner, "ShouldShowBannerAds", "initializeByDefault"),
+            new Layout.Category("Debugger", iconBug, "ShouldShowDebugger", "dontDestroyOnLoad"),
             new Layout.Category("AppsFlyer Attribution", iconAppsflyer, "devKey", "appID", "isDebug", "getConversionData")
         };
 

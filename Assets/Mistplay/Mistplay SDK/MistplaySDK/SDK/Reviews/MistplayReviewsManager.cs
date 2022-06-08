@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 #if UNITY_ANDROID
 using Google.Play.Review;
+using Google.Play.Common;
 #endif
 
 #if UNITY_IOS
@@ -11,23 +13,16 @@ using UnityEngine.iOS;
 
 namespace MistplaySDK
 {
-    public class MistplayReviewsManager : MonoBehaviour
+    public class MistplayReviewsManager : Singleton<MistplayReviewsManager>
     {
+        public const string ReviewedKey = "MRM_Reviewed";
+
         [Tooltip("The minimum required rating to show the player the store prompt")] [SerializeField] [Range(0, 5)] int MinimumRating;
 
         MistplayReviewPrompt prompt;
-        public static MistplayReviewsManager Instance { get; private set; }
 
-        void Awake()
+        protected override void OnAwake()
         {
-            if(Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
             prompt = GetComponentInChildren<MistplayReviewPrompt>(true);
         }
 
@@ -43,6 +38,7 @@ namespace MistplaySDK
                 OpenGooglePrompt();
                 OpenIOSPrompt();
             }
+            else MistplayFeedbackManager.Instance.Show();
         }
 
         void OnCancel()
@@ -61,7 +57,8 @@ namespace MistplaySDK
             {
                 if (info.Error == ReviewErrorCode.NoError)
                 {
-                    reviewManager.LaunchReviewFlow(info.GetResult());
+                    var result = reviewManager.LaunchReviewFlow(info.GetResult());
+                    StartCoroutine(WaitForReview(result));
                 }
                 else
                 {
@@ -70,6 +67,12 @@ namespace MistplaySDK
             };
 
             #endif
+        }
+
+        IEnumerator WaitForReview(PlayAsyncOperation<VoidResult, ReviewErrorCode> result)
+        {
+            while(!result.IsDone) yield return null;
+            if(result.IsSuccessful) PlayerPrefs.SetInt(ReviewedKey, 1);
         }
 
         void OpenIOSPrompt()

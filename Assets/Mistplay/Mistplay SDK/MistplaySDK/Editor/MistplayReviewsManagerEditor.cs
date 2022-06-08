@@ -15,7 +15,7 @@ public class MistplayReviewsManagerEditor : Editor
     {
         icon = Resources.Load("Icon_Star") as Texture;
 
-        settingsCategory = new Layout.Category("Reviews Settings", icon, "MinimumRating");
+        settingsCategory = new Layout.Category("Reviews Settings", icon, "MinimumRating", "dontDestroyOnLoad");
         settingsCategory.color = mainColor;
     }
 
