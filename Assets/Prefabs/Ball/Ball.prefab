@@ -282,7 +282,7 @@ MonoBehaviour:
   angle: 0
   scale: {x: 1, y: 1, z: 1}
   radius: 1.1
-  hardness: 10
+  hardness: 100
   tileTexture: {fileID: 0}
   tileTransform: {fileID: 0}
   tileOpacity: 3
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6944f1d49f305f943a82dfc92ce2205c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paintIn: 0
+  paintIn: 1
   interval: 0
   preview: 0
   priority: 0

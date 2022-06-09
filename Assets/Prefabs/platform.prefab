@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 49e35c0d6204f4c5d9ebf2e511b4f76c, type: 2}
+  - {fileID: 2100000, guid: ff853ad3df2c4ed4d8a2b43b1b05f104, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   width: 1024
   height: 1024
   texture: {fileID: 0}
-  color: {r: 0.52156866, g: 0.9607843, b: 0.654902, a: 1}
+  color: {r: 0.6360001, g: 0.454, b: 1, a: 1}
   format: 0
   mipMaps: 0
   filter: -1
