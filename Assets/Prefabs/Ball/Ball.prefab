@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 8
+  _rotateSpeed: 180
+  _rotateObject: {fileID: 7145580875477499771}
   _swipeInput: {fileID: 0}
 --- !u!114 &1486938078413658001
 MonoBehaviour:

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     [SerializeField] private float _speed = 12;
+    [SerializeField] private float _rotateSpeed = 12;
+    [SerializeField] private Transform _rotateObject;
     [SerializeField] private SwipeInput _swipeInput;
 
     private SphereCollider _sphereCollider;
@@ -29,6 +31,8 @@ public class Mover : MonoBehaviour
             Vector3 endPoint = transform.position + Vector3.right * _swipeInput.DirectionX;
 
             transform.position = Vector3.Lerp(transform.position, endPoint, _speed * Time.deltaTime);
+            _rotateObject.Rotate(Vector3.back * _swipeInput.DirectionX * _rotateSpeed * Time.deltaTime);
+
 
             if(_swipeInput.DirectionX != 0)
                 OnMoved?.Invoke();
